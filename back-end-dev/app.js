@@ -10,8 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const questions = require("./questions.json")
 
-
+console.log(questions)
 
 
 

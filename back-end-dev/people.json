@@ -1,0 +1,106 @@
+{
+    "people": [
+      {
+        "id": 1,
+        "username": "johnsmith",
+        "totalScore": 17,
+        "weekScores": [15]
+      },
+      {
+        "id": 2,
+        "username": "emmajones",
+        "totalScore": 12,
+        "weekScores": [10]
+      },
+      {
+        "id": 3,
+        "username": "michaelsmith",
+        "totalScore": 20,
+        "weekScores": [20]
+      },
+      {
+        "id": 4,
+        "username": "sarahbrown",
+        "totalScore": 14,
+        "weekScores": [14]
+      },
+      {
+        "id": 5,
+        "username": "davidwilson",
+        "totalScore": 19,
+        "weekScores": [19]
+      },
+      {
+        "id": 6,
+        "username": "laurajohnson",
+        "totalScore": 16,
+        "weekScores": [16]
+      },
+      {
+        "id": 7,
+        "username": "matthewdavis",
+        "totalScore": 18,
+        "weekScores": [18]
+      },
+      {
+        "id": 8,
+        "username": "olivertaylor",
+        "totalScore": 13,
+        "weekScores": [13]
+      },
+      {
+        "id": 9,
+        "username": "emilythomas",
+        "totalScore": 11,
+        "weekScores": [11]
+      },
+      {
+        "id": 10,
+        "username": "williammartin",
+        "totalScore": 20,
+        "weekScores": [20]
+      },
+      {
+        "id": 11,
+        "username": "sophiarobinson",
+        "totalScore": 10,
+        "weekScores": [10]
+      },
+      {
+        "id": 12,
+        "username": "jacoblewis",
+        "totalScore": 17,
+        "weekScores": [17]
+      },
+      {
+        "id": 13,
+        "username": "ameliawalker",
+        "totalScore": 15,
+        "weekScores": [15]
+      },
+      {
+        "id": 14,
+        "username": "ethanhall",
+        "totalScore": 19,
+        "weekScores": [19]
+      },
+      {
+        "id": 15,
+        "username": "chloeclark",
+        "totalScore": 12,
+        "weekScores": [12]
+      },
+      {
+        "id": 16,
+        "username": "jamesward",
+        "totalScore": 16,
+        "weekScores": [16]
+      },
+      {
+        "id": 17,
+        "username": "sophiahill",
+        "totalScore": 14,
+        "weekScores": [14]
+      }
+    ]
+  }

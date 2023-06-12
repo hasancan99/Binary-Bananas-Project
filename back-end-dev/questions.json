@@ -1,0 +1,25 @@
+{
+    "questions": [
+        {
+          "number": 1,
+          "question": "What is the capital of France: ",
+          "answers": [
+            "London",
+            "Berlin",
+            "Paris",
+            "New York"
+          ],
+          "correct_answer": 3
+        },{
+            "number": 2,
+            "question": "Where is the mouth of the river Nile: ",
+            "answers": [
+              "Brasil",
+              "Egypt",
+              "Peru",
+              "Rwanda"
+            ],
+            "correct_answer": 2
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+{
+  "questions": [
+    {
+      "number": 1,
+      "question": "Which of the following is the longest river in the world?",
+      "answers": [
+        "Nile",
+        "Amazon",
+        "Mississippi",
+        "Yangtze"
+      ],
+      "correct_answer": 1
+    },
+    {
+      "number": 2,
+      "question": "Which of the following countries is not located in Africa?",
+      "answers": [
+        "Nigeria",
+        "Brazil",
+        "South Africa",
+        "Egypt"
+      ],
+      "correct_answer": 2
+    },
+    {
+      "number": 3,
+      "question": "Which of the following continents is the largest by land area?",
+      "answers": [
+        "Asia",
+        "Europe",
+        "Africa",
+        "North America"
+      ],
+      "correct_answer": 1
+    },
+    {
+      "number": 4,
+      "question": "The Great Barrier Reef, one of the world's largest coral reef systems, is located in which country?",
+      "answers": [
+        "Australia",
+        "Indonesia",
+        "Mexico",
+        "Brazil"
+      ],
+      "correct_answer": 0
+    },
+    {
+      "number": 5,
+      "question": "Which of the following is a renewable source of energy?",
+      "answers": [
+        "Coal",
+        "Natural gas",
+        "Solar power",
+        "Nuclear power"
+      ],
+      "correct_answer": 2
+    },
+    {
+      "number": 6,
+      "question": "What is the capital city of Canada?",
+      "answers": [
+        "Toronto",
+        "Ottawa",
+        "Vancouver",
+        "Montreal"
+      ],
+      "correct_answer": 1
+    },
+    {
+      "number": 7,
+      "question": "The Himalayas, the world's highest mountain range, is located in which continent?",
+      "answers": [
+        "Asia",
+        "Europe",
+        "South America",
+        "Africa"
+      ],
+      "correct_answer": 0
+    },
+    {
+      "number": 8,
+      "question": "What is the largest ocean on Earth?",
+      "answers": [
+        "Pacific Ocean",
+        "Atlantic Ocean",
+        "Indian Ocean",
+        "Arctic Ocean"
+      ],
+      "correct_answer": 0
+    },
+    {
+      "number": 9,
+      "question": "Which of the following countries is known for the Amazon rainforest?",
+      "answers": [
+        "Brazil",
+        "Russia",
+        "Canada",
+        "China"
+      ],
+      "correct_answer": 0
+    },
+    {
+      "number": 10,
+      "question": "The Sahara Desert is located in which continent?",
+      "answers": [
+        "Africa",
+        "Asia",
+        "South America",
+        "Europe"
+      ],
+      "correct_answer": 0
+    }
+  ]
+}

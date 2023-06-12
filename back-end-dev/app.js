@@ -7,6 +7,7 @@ app.use(express.json())
 
 const questionsData = require("./questions.json")
 const questions = questionsData.questions
+const leaderboard = require("./people.json")
 
 // Define a new GET route for "/next-question"
 app.get('/next-question', (req, res) => {
@@ -30,7 +31,11 @@ app.get('/next-question', (req, res) => {
     }
 })
 
+app.get('/leaderboard', (req,res)=>{
 
+    res.send(leaderboard)
+    
+})
 
 
 module.exports = app

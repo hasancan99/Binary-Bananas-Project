@@ -30,9 +30,6 @@ app.get('/next-question', (req, res) => {
     }
 })
 
-const questions = require("./questions.json")
-
-console.log(questions)
 
 
 

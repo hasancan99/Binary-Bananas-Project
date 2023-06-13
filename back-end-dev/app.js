@@ -37,39 +37,39 @@ app.get('/next-question', (req, res) => {
 
 app.get('/leaderboard', (req,res)=>{
 
-    res.send(leaderboard)
+    res.send(leaderboard)  //change leaderboard element call on front end
     
 })
 
 // Posting usernames to leaderboard.
-app.post('/add-user/:user', (req,res) => {
-    const userName = req.params.user
-console.log(req.params.user);
+app.post('/add-user/:user', (req, res) => {
+    const userName = req.params.user;
+  
+    console.log(req.params.user);
+  
     if (userName) {
-        const checkUser = leaderboard.people.find(element => element.username === userName)
-        console.log(checkUser);
-        if (!checkUser) {
-            fs.readFile('./people.json', 'utf8', (err, data) => {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
-                const peopleData = JSON.parse(data);
-            const data = {username: userName, totalScore: 0 }
-            fs.writeFile('./people.json', JSON.stringify(data), 'utf8', (err) => 
-            { if (err) { console.error(err); return; } console.log('Data has been written to the JSON file.'); });
-            })
-            res.status(200).json({ success: 'username added' })
-            console.log(leaderboard);
-        }
-        else {
-            res.status(409).json({ error: 'Username already in use' })
-        }
+      const checkUser = leaderboard.find((element) => element.username === userName);
+  
+      console.log(checkUser);
+  
+      if (!checkUser) {
+        let peopleData = fs.readFileSync('./people.json', 'utf8');
+        peopleData = JSON.parse(peopleData);
+  
+        const userData = { username: userName, totalScore: 0 };
+        peopleData.push(userData);
+  
+        fs.writeFileSync('./people.json', JSON.stringify(leaderboard), 'utf8');
+  
+        res.status(200).json({ success: 'Username added' });
+        console.log(peopleData);
+      } else {
+        res.status(409).json({ error: 'Username already in use' });
+      }
+    } else {
+      res.status(400).json({ error: 'Please enter username' });
     }
-    else {
-        res.status(400).json({ error: 'Please enter username' })
-    }
-})
+  });
 
 // Adds totalscore
 app.post('/add-totalScore/:user/:score', (req,res) => {

@@ -53,12 +53,10 @@ app.post("/add-user/:user", (req, res) => {
     return res.status(409).json({ error: "Username already in use" });
   }
 
-  //if its a new user, read the json file and push the new user to the file with a score of zero
-  let peopleData = fs.readFileSync("./people.json", "utf8");
-  peopleData = JSON.parse(peopleData);
+  //if its a new user, push the new user to leaderboard and write it to the json file
   const userData = { username: userName, totalScore: 0 };
-  peopleData.push(userData);
-  fs.writeFileSync("./people.json", JSON.stringify(peopleData), "utf8");
+  leaderboard.push(userData);
+  fs.writeFileSync("./people.json", JSON.stringify(leaderboard), "utf8");
 
   //send a success message
   res.status(200).json({ success: "Username added" });
@@ -68,25 +66,27 @@ app.post("/add-user/:user", (req, res) => {
 app.post("/add-totalScore/:user/:score", (req, res) => {
   const totalScore = req.params.score;
   const user = req.params.user;
-  console.log(user);
-  if (totalScore) {
-    if (user) {
-      const checkUser = leaderboard.people.find(
-        (element) => element.username === user
-      );
-      if (checkUser) {
-        checkUser.totalScore = totalScore;
-        console.log(leaderboard);
-        res.status(200).json({ success: `score updated: ${totalScore}` });
-      } else {
-        res.status(404).json({ error: "user not found" });
-      }
-    } else {
-      res.status(400).json({ error: "please enter username" });
-    }
-  } else {
-    res.status(400).json({ error: "score not found" });
+  //check whether a username and score has been entered
+  if (!user) {
+    return res.status(400).json({ error: "Please enter a username" });
   }
+  if (!totalScore) {
+    return res.status(400).json({ error: "Score not found" });
+  }
+
+  //find the user in the leaderboard
+  const checkUser = leaderboard.find((element) => element.username === user);
+
+  //if user isnt in the leaderboard - return error
+  if (!checkUser) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  //update the users score- and then write to the json file
+  checkUser.totalScore = totalScore;
+  fs.writeFileSync("./people.json", JSON.stringify(leaderboard), "utf8");
+
+  res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
 
 module.exports = app;

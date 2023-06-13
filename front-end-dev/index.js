@@ -1,10 +1,14 @@
 let questionNumber = 1
 let incorrectAnswers = 0
+let dinoPosition = 1 // ELLIOT TODAY
+let userPosition = 4 // ELLIOT TODAY
 
 // When pages loads run nextQuestion function
 window.onload = () => {
     nextQuestion()
 }
+
+
 
 // Function to fetch and display the next question
 function nextQuestion() {
@@ -12,6 +16,7 @@ function nextQuestion() {
     fetch(`http://localhost:3000/next-question?questionNumber=${questionNumber}`)
         .then(response => response.json())
         .then(question => {
+            
             // Update the question text on the page
             document.getElementById('question').innerText = question.question
             
@@ -47,22 +52,65 @@ function checkAnswer(index, correctAnswerIndex) {
 
         // Increment the question number and fetch the next question bu running nextQuestion again
         questionNumber++
+
+        // Move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it
+        document.getElementById("player").style.gridColumn = ++userPosition // ELLIOT TODAY
+
         nextQuestion()
     } else {
         // If the chosen answer is incorrect
         // Increment the incorrect answers counter
         incorrectAnswers++
 
+        // Move the user one place to the left. '--' is before 'userPosition' so it decrements it before returning it
+        document.getElementById("player").style.gridColumn = --userPosition // ELLIOT TODAY
+
         // Update the status text to indicate an incorrect answer
         document.getElementById('status').innerText = 'Incorrect! The dinosaur is getting closer!'
 
-        // If there have been 3 incorrect answers
-        if (incorrectAnswers >= 3) {
+        // If the user gets eaten
+        if (userPosition === dinoPosition) {
             // Update the status text to indicate the game is over
-            document.getElementById('status').innerText += ' The dinosaur caught you. Game over!'
+            document.getElementById('status').innerText = ' The dinosaur caught you. Game over!'
 
             // Clear the options div so no more answers can be chosen
             document.getElementById('options').innerHTML = ''
-        }
-    }
+
+            // Hide dino and player
+            document.getElementById("player").style.display = 'none'
+            document.getElementById("beast").style.display = 'none'
+
+            // Show new game button
+            document.getElementById('newGameButton').style.display = 'block'
+
+            // If user wants to play again.
+            document.getElementById('newGameButton').addEventListener('click', function() {
+
+                // Hide new game button.
+                document.getElementById('newGameButton').style.display = 'none'
+
+                // Reset scores and positions
+                let questionNumber = 1
+                let incorrectAnswers = 0
+                let dinoPosition = 1
+                let userPosition = 4
+
+                // Reset status
+                document.getElementById('status').innerText = 'Pick the right answer!'
+
+                // Show and reset dino and player position
+                document.getElementById("player").style.gridColumn = userPosition
+                document.getElementById("beast").style.gridColumn = dinoPosition
+                document.getElementById("player").style.display = 'block'
+                document.getElementById("beast").style.display = 'block'
+
+                // Run game again
+                nextQuestion()
+
+})
+
+           
+
+}
+}
 }

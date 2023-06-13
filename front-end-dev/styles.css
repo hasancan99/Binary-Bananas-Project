@@ -44,15 +44,25 @@ header nav a:hover {
     color: var(--link-color-hover);
 }
 
+
+#question {
+    font-size: 34px;
+    max-width: 800px;
+}
+
 #game {
     text-align: center;
     margin-top: 20px;
 }
 
+#status {
+    font-size: 24px;
+}
+
 #grid {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 10px;
     margin-bottom: 20px;
     height: 300px;
@@ -65,20 +75,22 @@ header nav a:hover {
     z-index: -1;
 }
 
-#player,
-#beast {
-    height: 216px;
-    width: 268px;
-}
 
 #beast {
     grid-column: 1;
     background: url('img/dinosaur.png') center/cover;
+    height: 150px;
+    width: 186px;
+    display: block;
 }
 
 #player {
-    grid-column: 5;
+    grid-column: 4;
     background: url('img/wolf.png') center/cover;
+    margin-top: 38px;
+    height: 112px;
+    width: 140px;
+    display: block;
 }
 
 #options {
@@ -86,6 +98,7 @@ header nav a:hover {
     justify-content: center;
     gap: 10px;
 }
+
 
 button {
     padding: 20px;
@@ -100,5 +113,29 @@ button {
 }
 
 button:hover {
+    background-color: var(--button-background-hover);
+}
+
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#newGameButton {
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 26px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+#newGameButton:hover {
     background-color: var(--button-background-hover);
 }

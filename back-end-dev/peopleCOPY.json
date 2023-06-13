@@ -1,0 +1,72 @@
+
+{"people": [
+    {
+      "username": "johnsmith",
+      "totalScore": 17
+    },
+    {
+      "username": "emmajones",
+      "totalScore": 12
+    },
+    {
+      "username": "michaelsmith",
+      "totalScore": 20
+    },
+    {
+      "username": "sarahbrown",
+      "totalScore": 14
+    },
+    {
+      "username": "davidwilson",
+      "totalScore": 19
+    },
+    {
+      "username": "laurajohnson",
+      "totalScore": 16
+    },
+    {
+      "username": "matthewdavis",
+      "totalScore": 18
+    },
+    {
+      "username": "olivertaylor",
+      "totalScore": 13
+    },
+    {
+      "username": "emilythomas",
+      "totalScore": 11
+    },
+    {
+      "username": "williammartin",
+      "totalScore": 20
+    },
+    {
+      "username": "sophiarobinson",
+      "totalScore": 10
+    },
+    {
+      "username": "jacoblewis",
+      "totalScore": 17
+    },
+    {
+      "username": "ameliawalker",
+      "totalScore": 15
+    },
+    {
+      "username": "ethanhall",
+      "totalScore": 19
+    },
+    {
+      "username": "chloeclark",
+      "totalScore": 12
+    },
+    {
+      "username": "jamesward",
+      "totalScore": 16
+    },
+    {
+      "username": "sophiahill",
+      "totalScore": 14
+    }
+  ]
+}

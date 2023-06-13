@@ -34,9 +34,11 @@ app.get("/next-question", (req, res) => {
   }
 });
 
+//List scores of players in descending order.
 app.get("/leaderboard", (req, res) => {
-  res.send(leaderboard); //change leaderboard element call on front end
-});
+    res.send(leaderboard.sort((a, b) => b.totalScore - a.totalScore));
+    });
+
 
 // Posting usernames to leaderboard.
 app.post("/add-user/:user", (req, res) => {
@@ -64,7 +66,7 @@ app.post("/add-user/:user", (req, res) => {
 
 // Adds totalscore
 app.post("/add-totalScore/:user/:score", (req, res) => {
-  const totalScore = req.params.score;
+  const totalScore = parseInt(req.params.score);
   const user = req.params.user;
   //check whether a username and score has been entered
   if (!user) {
@@ -88,5 +90,7 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
 
   res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
+
+
 
 module.exports = app;

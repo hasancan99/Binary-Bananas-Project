@@ -1,7 +1,7 @@
 let questionNumber = 1
 let incorrectAnswers = 0
-let dinoPosition = 1 // ELLIOT TODAY
-let userPosition = 4 // ELLIOT TODAY
+let dinoPosition = 1
+let userPosition = 4
 
 // When pages loads run nextQuestion function
 window.onload = () => {
@@ -53,8 +53,9 @@ function checkAnswer(index, correctAnswerIndex) {
         // Increment the question number and fetch the next question bu running nextQuestion again
         questionNumber++
 
-        // Move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it
-        document.getElementById("player").style.gridColumn = ++userPosition // ELLIOT TODAY
+        // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
+        document.getElementById("player").style.gridColumn = userPosition < 8 ? ++userPosition : userPosition
+
 
         nextQuestion()
     } else {
@@ -63,7 +64,7 @@ function checkAnswer(index, correctAnswerIndex) {
         incorrectAnswers++
 
         // Move the user one place to the left. '--' is before 'userPosition' so it decrements it before returning it
-        document.getElementById("player").style.gridColumn = --userPosition // ELLIOT TODAY
+        document.getElementById("player").style.gridColumn = --userPosition
 
         // Update the status text to indicate an incorrect answer
         document.getElementById('status').innerText = 'Incorrect! The dinosaur is getting closer!'
@@ -90,10 +91,10 @@ function checkAnswer(index, correctAnswerIndex) {
                 document.getElementById('newGameButton').style.display = 'none'
 
                 // Reset scores and positions
-                let questionNumber = 1
-                let incorrectAnswers = 0
-                let dinoPosition = 1
-                let userPosition = 4
+                questionNumber = 1
+                incorrectAnswers = 0
+                dinoPosition = 1
+                userPosition = 4
 
                 // Reset status
                 document.getElementById('status').innerText = 'Pick the right answer!'
@@ -108,8 +109,6 @@ function checkAnswer(index, correctAnswerIndex) {
                 nextQuestion()
 
 })
-
-           
 
 }
 }

@@ -35,9 +35,8 @@ app.get("/next-question", (req, res) => {
 
 //List scores of players in descending order.
 app.get("/leaderboard", (req, res) => {
-    res.send(leaderboard.sort((a, b) => b.totalScore - a.totalScore));
-    });
-
+  res.send(leaderboard.sort((a, b) => b.totalScore - a.totalScore));
+});
 
 // Posting usernames to leaderboard.
 app.post("/add-user/:user", (req, res) => {

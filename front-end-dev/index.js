@@ -29,13 +29,17 @@ const playGame = () =>{
 
 }
 
-const endGame = () => {
+const endGame = (gameWon = false) => {
     // Clear countdown interval to stop the timer
     clearInterval(countdownInterval);
     document.getElementById('countdown').innerText = ''
 
+    // If gameWon parameter is true then display a different message to game lost message
     // Update the status text to indicate the game is over
-    document.getElementById('status').innerText = ' The dinosaur caught you. Game over!'
+    if(gameWon){
+        document.getElementById('status').innerText =  "CONGRATULATIONS! You've survived."
+    }else{
+        document.getElementById('status').innerText = ' The dinosaur caught you. Game over!'}
 
     // Clear the options div so no more answers can be chosen
     document.getElementById('options').innerHTML = ''
@@ -81,13 +85,6 @@ function nextQuestion() {
     if (countdownInterval) {
         clearInterval(countdownInterval);
     }
-
-    // //If statement for when there are no more questions left to read
-    // if(questionNumber>question.length) {
-    //     document.getElementById("beast").style.display = 'none'
-    //     document.getElementById('status').innerText = "CONGRATULATIONS! You've survived."
-
-    // }
 
     // Send a GET request to the server to fetch the next question
     fetch(`http://localhost:3000/next-question?questionNumber=${questionNumber}`)
@@ -145,7 +142,6 @@ function nextQuestion() {
                     
                     // Go to the next question
                     questionNumber++
-                    console.log(questionNumber)
                     nextQuestion()
 
                 }else {
@@ -155,7 +151,10 @@ function nextQuestion() {
             }, 1000)
         })
         // If there's an error, log it to the console
-        .catch(error => console.error('Error:', error))
+        .catch(error => { 
+            console.error('Error:', error)
+            endGame(true)
+    })
 }
 
 

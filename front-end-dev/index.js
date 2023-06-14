@@ -54,11 +54,20 @@ getCurrentScore(username).then(score => {
 
 
 
-// When pages loads run nextQuestion function
+// When pages loads run playGame function
 window.onload = () => {
-    nextQuestion()
+    playGame()
 }
 
+//Reveals play game button which when clicked starts the quiz
+const playGame = () =>{
+    document.getElementById('newGameButton').style.display = 'block'
+    document.getElementById('newGameButton').addEventListener('click', function() {
+        console.log("button pressed")
+        document.getElementById('newGameButton').style.display = 'none'
+        nextQuestion()})
+
+}
 
 
 
@@ -77,12 +86,15 @@ const endGame = () => {
     document.getElementById("player").style.display = 'none'
     document.getElementById("beast").style.display = 'none'
 
+    //change the play game button to New Game
+    document.getElementById('newGameButton').innerHTML = 'New Game' 
     // Show new game button
     document.getElementById('newGameButton').style.display = 'block'
 
     // If user wants to play again.
     document.getElementById('newGameButton').addEventListener('click', function() {
         // Hide new game button.
+        
         document.getElementById('newGameButton').style.display = 'none'
 
         // Reset scores and positions
@@ -111,6 +123,13 @@ function nextQuestion() {
     if (countdownInterval) {
         clearInterval(countdownInterval);
     }
+
+    // //If statement for when there are no more questions left to read
+    // if(questionNumber>question.length) {
+    //     document.getElementById("beast").style.display = 'none'
+    //     document.getElementById('status').innerText = "CONGRATULATIONS! You've survived."
+
+    // }
 
     // Send a GET request to the server to fetch the next question
     fetch(`http://localhost:3000/next-question?questionNumber=${questionNumber}`)
@@ -178,8 +197,10 @@ function nextQuestion() {
                     
                     // Go to the next question
                     questionNumber++
+                    console.log(questionNumber)
                     nextQuestion()
-                } else {
+
+                }else {
                     // Otherwise, update the countdown with the remaining time
                     document.getElementById('countdown').innerText = countdown + ' seconds remaining.'
                 }
@@ -202,6 +223,7 @@ function checkAnswer(index, correctAnswerIndex) {
 
         // Increment the question number and fetch the next question by running nextQuestion again
         questionNumber++
+
 
         // ELLIOT Increment user score and on server too
         currentScore++
@@ -238,3 +260,18 @@ function checkAnswer(index, correctAnswerIndex) {
     }
 }
 
+
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+    displayMessage();
+  }
+  
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+//   displayMessage() function is called when the popup is opened ()
+  function displayMessage() {
+    const messageTextarea = document.getElementById("messageTextarea");
+    messageTextarea.value = "Players must stay ahead of the beasts by answering a series of questions where each correct response allows our explorers to make one step towards safety. Sounds easy enough right? Well try answering a series of multiple choice questions with 10ton Dinosaur chasing you down! If our explorers answer too many incorrect questions then the Dinosaurs will get to enjoy an early Dinner. 1) Enter username and Submit, 2) Answer questions correctly to ensure you stay alive, 3) Check leaderboard to see your score";
+  }
+ 

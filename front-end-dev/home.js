@@ -164,3 +164,5 @@ const addScore = async(username, totalScore) => {
         }
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
+
+

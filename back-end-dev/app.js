@@ -10,6 +10,7 @@ app.use(express.json());
 const questionsData = require("./questions.json");
 const questions = questionsData.questions;
 const leaderboard = require("./people.json");
+const points = require("./people.json"); // ELLIOT
 
 // Define a new GET route for "/next-question"
 app.get("/next-question", (req, res) => {
@@ -95,5 +96,25 @@ app.get("/usernames", (req, res) => {
   const usernames = leaderboard.map((user) => user.username);
   res.json(usernames);
 });
+
+
+
+
+// CHECKSCORE ELLIOT
+app.get("/get-score/:user", (req, res) => {
+  const user = req.params.user;
+
+  // Find the user in the leaderboard
+  const findUser = leaderboard.find((element) => element.username === user);
+
+  // If the user isn't in the leaderboard, return an error
+  if (!findUser) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  // If the user is found, return their score
+  res.status(200).json(findUser.totalScore);
+});
+
 
 module.exports = app;

@@ -14,11 +14,20 @@ let countdown = 10
 
 
 
-// When pages loads run nextQuestion function
+// When pages loads run playGame function
 window.onload = () => {
-    nextQuestion()
+    playGame()
 }
 
+//Reveals play game button which when clicked starts the quiz
+const playGame = () =>{
+    document.getElementById('newGameButton').style.display = 'block'
+    document.getElementById('newGameButton').addEventListener('click', function() {
+        console.log("button pressed")
+        document.getElementById('newGameButton').style.display = 'none'
+        nextQuestion()})
+
+}
 
 const endGame = () => {
     // Clear countdown interval to stop the timer
@@ -35,12 +44,15 @@ const endGame = () => {
     document.getElementById("player").style.display = 'none'
     document.getElementById("beast").style.display = 'none'
 
+    //change the play game button to New Game
+    document.getElementById('newGameButton').innerHTML = 'New Game' 
     // Show new game button
     document.getElementById('newGameButton').style.display = 'block'
 
     // If user wants to play again.
     document.getElementById('newGameButton').addEventListener('click', function() {
         // Hide new game button.
+        
         document.getElementById('newGameButton').style.display = 'none'
 
         // Reset scores and positions
@@ -69,6 +81,13 @@ function nextQuestion() {
     if (countdownInterval) {
         clearInterval(countdownInterval);
     }
+
+    // //If statement for when there are no more questions left to read
+    // if(questionNumber>question.length) {
+    //     document.getElementById("beast").style.display = 'none'
+    //     document.getElementById('status').innerText = "CONGRATULATIONS! You've survived."
+
+    // }
 
     // Send a GET request to the server to fetch the next question
     fetch(`http://localhost:3000/next-question?questionNumber=${questionNumber}`)
@@ -126,8 +145,10 @@ function nextQuestion() {
                     
                     // Go to the next question
                     questionNumber++
+                    console.log(questionNumber)
                     nextQuestion()
-                } else {
+
+                }else {
                     // Otherwise, update the countdown with the remaining time
                     document.getElementById('countdown').innerText = countdown + ' seconds remaining.'
                 }
@@ -148,7 +169,7 @@ function checkAnswer(index, correctAnswerIndex) {
 
         // Increment the question number and fetch the next question by running nextQuestion again
         questionNumber++
-
+        
         // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
         document.getElementById("player").style.gridColumn = userPosition < 8 ? ++userPosition : userPosition
 

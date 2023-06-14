@@ -15,7 +15,6 @@ const leaderboard = require("./people.json");
 app.get("/next-question", (req, res) => {
   // Try to retrieve the "questionNumber" parameter from the request query.
   // If it doesn't exist, default to 0.
-  ls;
   const questionNumber = req.query.questionNumber
     ? parseInt(req.query.questionNumber)
     : 0;
@@ -36,9 +35,8 @@ app.get("/next-question", (req, res) => {
 
 //List scores of players in descending order.
 app.get("/leaderboard", (req, res) => {
-    res.send(leaderboard.sort((a, b) => b.totalScore - a.totalScore));
-    });
-
+  res.send(leaderboard.sort((a, b) => b.totalScore - a.totalScore));
+});
 
 // Posting usernames to leaderboard.
 app.post("/add-user/:user", (req, res) => {
@@ -90,7 +88,5 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
 
   res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
-
-
 
 module.exports = app;

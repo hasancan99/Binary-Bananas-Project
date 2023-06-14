@@ -89,4 +89,11 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
   res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
 
+
+// New endpoint to check if a username exists
+app.get("/usernames", (req, res) => {
+  const usernames = leaderboard.map((user) => user.username);
+  res.json(usernames);
+});
+
 module.exports = app;

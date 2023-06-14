@@ -6,6 +6,62 @@
 
 //const { green } = require("ansi-colors");
 
+// Update the username form submission event.
+document.querySelector('#userInput').addEventListener("submit", async event =>{
+    event.preventDefault();
+    let userInputName = document.querySelector('#username').value;
+    
+    // Fetch all usernames
+    const resp = await fetch('http://localhost:3000/usernames');
+    if (resp.ok) {
+        const usernames = await resp.json();
+
+        // Check if the username already exists
+        if (usernames.includes(userInputName)) {
+            // Store the username in localStorage
+            localStorage.setItem('username', userInputName);
+
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        } else {
+            // If the username doesn't exist, show an error
+            alert("Username does not exist.");
+        }
+    } else {
+        console.log("Error: " + resp.status);
+    }
+})
+
+
+
+
+document.querySelector('#userInput').addEventListener("submit", async event =>{
+    event.preventDefault();
+    let userInputName = document.querySelector('#username').value;
+    
+    // Check if the username already exists
+    try {
+        const resp = await fetch(`http://localhost:3000/check-user/${userInputName}`);
+        if (resp.ok) {
+            const data = await resp.json();
+            if (data.userExists) {
+                localStorage.setItem('username', userInputName); // Store the username
+
+                // Redirect to index.html
+                window.location.href = 'index.html';
+            } else {
+                alert("User does not exist.");
+            }
+        } else {
+            throw "Error: http status code = " + resp.status;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
+
 //retrieve leaderboard when button pressed
 document.querySelector("#revealLeaderboard").addEventListener("click", (e) => {
   const users = userData("emmajones");
@@ -18,6 +74,9 @@ document.querySelector("#userInput").addEventListener("submit", (e) => {
   let userInputName = document.querySelector("#username").value;
   addUser(userInputName);
 });
+
+
+
 
 //function to retrieve and order data for leaderboard
 const userData = async (username) => {
@@ -77,18 +136,24 @@ function ordinal_suffix_of(i) {
 }
 
 //checks if submitted username exists, and adds to database if not
-const addUser = async (username) => {
-  try {
-    const resp = await fetch(`http://localhost:3000/add-user/${username}`, {
-      method: "POST",
-    });
-    if (resp.ok) {
-      console.log(`${username} successfully added`);
-    } else {
-      throw "Error: http status code = " + resp.status;
-    }
-  } catch (err) {
-    console.log(err);
+
+const addUser = async(username) => {
+    try {
+        const resp = await fetch(`http://localhost:3000/add-user/${username}`, {
+            method: "POST"
+        })
+        if (resp.ok) {
+            console.log(`${username} successfully added`);
+            localStorage.setItem('username', userInputName); // Store the username
+
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        } else {
+        throw "Error: http status code = " + resp.status;
+       }
+      } catch (err) {
+       console.log(err);
+      }
   }
 };
 

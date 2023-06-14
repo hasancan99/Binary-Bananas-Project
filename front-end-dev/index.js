@@ -1,9 +1,18 @@
+// Import the username from localStorage
+let username = localStorage.getItem('username');
+
+// You can now use this username anywhere in your index.js file. For example:
+console.log(`The username is: ${username}`);
+
+
 let questionNumber = 1
 let incorrectAnswers = 0
 let dinoPosition = 1
 let userPosition = 4
 let countdownInterval = null
 let countdown = 10
+
+
 
 // When pages loads run nextQuestion function
 window.onload = () => {
@@ -164,4 +173,3 @@ function checkAnswer(index, correctAnswerIndex) {
         }
     }
 }
-

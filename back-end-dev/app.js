@@ -15,7 +15,6 @@ const leaderboard = require("./people.json");
 app.get("/next-question", (req, res) => {
   // Try to retrieve the "questionNumber" parameter from the request query.
   // If it doesn't exist, default to 0.
-  ls;
   const questionNumber = req.query.questionNumber
     ? parseInt(req.query.questionNumber)
     : 0;
@@ -92,5 +91,10 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
 });
 
 
+// New endpoint to check if a username exists
+app.get("/usernames", (req, res) => {
+  const usernames = leaderboard.map((user) => user.username);
+  res.json(usernames);
+});
 
 module.exports = app;

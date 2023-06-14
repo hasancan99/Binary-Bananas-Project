@@ -16,9 +16,17 @@ let countdown = 10
 
 // When pages loads run nextQuestion function
 window.onload = () => {
-    nextQuestion()
+    playGame()
+    //nextQuestion()
 }
+const playGame = () =>{
+    document.getElementById('newGameButton').style.display = 'block'
+    document.getElementById('newGameButton').addEventListener('click', function() {
+        console.log("button pressed")
+        document.getElementById('newGameButton').style.display = 'none'
+        nextQuestion()})
 
+}
 
 const endGame = () => {
     // Clear countdown interval to stop the timer
@@ -35,12 +43,15 @@ const endGame = () => {
     document.getElementById("player").style.display = 'none'
     document.getElementById("beast").style.display = 'none'
 
+    //change the play game button to New Game
+    document.getElementById('newGameButton').innerHTML = 'New Game' 
     // Show new game button
     document.getElementById('newGameButton').style.display = 'block'
 
     // If user wants to play again.
     document.getElementById('newGameButton').addEventListener('click', function() {
         // Hide new game button.
+        
         document.getElementById('newGameButton').style.display = 'none'
 
         // Reset scores and positions

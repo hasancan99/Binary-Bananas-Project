@@ -173,3 +173,18 @@ function checkAnswer(index, correctAnswerIndex) {
         }
     }
 }
+
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+    displayMessage();
+  }
+  
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+//   displayMessage() function is called when the popup is opened ()
+  function displayMessage() {
+    const messageTextarea = document.getElementById("messageTextarea");
+    messageTextarea.value = "Players must stay ahead of the beasts by answering a series of questions where each correct response allows our explorers to make one step towards safety. Sounds easy enough right? Well try answering a series of multiple choice questions with 10ton Dinosaur chasing you down! If our explorers answer too many incorrect questions then the Dinosaurs will get to enjoy an early Dinner. 1) Enter username and Submit, 2) Answer questions correctly to ensure you stay alive, 3) Check leaderboard to see your score";
+  }
+  

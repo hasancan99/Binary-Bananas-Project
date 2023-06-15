@@ -52,6 +52,7 @@ getCurrentScore(username).then(score => {
   console.log(`The current score is: ${currentScore}`); // Log the current score
 });
 
+
 // When pages loads run nextQuestion function
 window.onload = () => {
   nextQuestion();
@@ -77,7 +78,6 @@ const endGame = () => {
 };
 
 document.getElementById('username').innerText = `Hi ${username}!`;
-document.getElementById('score').innerText = `Your score: ${currentScore}`;
 
 function nextQuestion() {
   // Clear countdown interval if it's already set
@@ -140,7 +140,7 @@ function nextQuestion() {
           // ELLIOT Decrement user score on locally and on server
           currentScore--;
           updateScore(username, currentScore);
-          document.getElementById('score').innerText = `Your score: ${currentScore}`;
+          document.getElementById('score').innerText = `Total score: ${currentScore}`;
 
           // Go to the next question
           questionNumber++;
@@ -150,10 +150,16 @@ function nextQuestion() {
           document.getElementById('countdown').innerText = countdown + ' seconds remaining.';
         }
       }, 1000);
+
+      // When the first question is answered, display the score
+      if (questionNumber === 2) {
+        document.getElementById('score').innerText = `Total score: ${currentScore}`;
+      }
     })
     // If there's an error, log it to the console
     .catch(error => console.error('Error:', error));
 }
+
 
 // Function to check if the chosen answer is correct
 function checkAnswer(index, correctAnswerIndex) {
@@ -168,7 +174,7 @@ function checkAnswer(index, correctAnswerIndex) {
     // ELLIOT Increment user score and update it on the server too
     currentScore++;
     updateScore(username, currentScore);
-    document.getElementById('score').innerText = `Your score: ${currentScore}`;
+    document.getElementById('score').innerText = `Total score: ${currentScore}`;
 
     // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
     document.getElementById("player").style.gridColumn = userPosition < 8 ? ++userPosition : userPosition;
@@ -182,7 +188,7 @@ function checkAnswer(index, correctAnswerIndex) {
     // ELLIOT Decrement user score locally and on the server
     currentScore--;
     updateScore(username, currentScore);
-    document.getElementById('score').innerText = `Your score: ${currentScore}`;
+    document.getElementById('score').innerText = `Total score: ${currentScore}`;
 
     // Move the dinosaur one place to the right. '++' is before 'dinoPosition' so it increments it before returning it
     document.getElementById("player").style.gridColumn = --userPosition;

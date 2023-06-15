@@ -19,6 +19,8 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
           } else {
               // If the username doesn't exist, create new user
               addUser(userInputName);
+              localStorage.setItem('username', userInputName);
+              window.location.href = 'game.html';
           }
       } else if (action === 'login') {
           // Log in existing user
@@ -61,7 +63,7 @@ const userData = async (username) => {
           const listElement = document.createElement("li");
           listElement.textContent = `${ordinal_suffix_of(
             positionCount
-          )}: ${data[i].username} - ${
+          )}: ${data[i].username} = ${
             data[i].totalScore
           } points`;
           if (username === data[i]["username"]) {
@@ -143,6 +145,7 @@ const addScore = async(username, totalScore) => {
         }
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
+
 // Retrieve leaderboard when button pressed
 const leaderboardButton = document.querySelector("#revealLeaderboard");
 const leaderboard = document.querySelector("#Leaderboard");
@@ -156,6 +159,9 @@ leaderboardButton.addEventListener("click", async (e) => {
   if (leaderboardGenerated) {
     leaderboardVisible = !leaderboardVisible;
     leaderboard.hidden = !leaderboardVisible;
+
+    // Change button text based on the visibility of the leaderboard
+    leaderboardButton.textContent = leaderboardVisible ? 'Hide the Leaderboard' : 'See the Leaderboard';
     return;
   }
   
@@ -166,6 +172,10 @@ leaderboardButton.addEventListener("click", async (e) => {
   leaderboard.hidden = false;
 
   leaderboardGenerated = true; // Set the leaderboard as generated
+
+  // Change button text
+  leaderboardButton.textContent = 'Hide the Leaderboard';
 });
+
 
 

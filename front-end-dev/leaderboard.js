@@ -79,6 +79,7 @@ const userData = async (username) => {
           listElement.style.backgroundColor = "#4CAF50";
           const position = i;
           const h3 = document.createElement("h3");
+          h3.id = "h3leaderboard";
           h3.textContent = `You are in ${ordinal_suffix_of(
             positionCount
           )} position!`;

@@ -399,3 +399,13 @@ main {
 .leaderboard-score {
   margin-left: auto;
 }
+
+#leaderTitle {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+#h3leaderboard {
+  text-align: center;
+  padding-bottom: 2rem;
+}

@@ -67,6 +67,11 @@ header nav a:hover {
     font-size: 24px;
 }
 
+
+#username {
+    font-size: 24px;
+}
+
 #grid {
     position: relative;
     display: grid;

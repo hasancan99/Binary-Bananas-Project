@@ -12,6 +12,9 @@ let countdownInterval = null;
 let countdown = 10;
 let currentScore = 0;
 
+
+
+
 // ELLIOT
 const getCurrentScore = async (username) => {
   try {
@@ -72,6 +75,9 @@ const endGame = () => {
   // Show new game button
   document.getElementById('newGameButton').style.display = 'block';
 };
+
+document.getElementById('username').innerText = `Hi ${username}!`;
+document.getElementById('score').innerText = `Your score: ${currentScore}`;
 
 function nextQuestion() {
   // Clear countdown interval if it's already set

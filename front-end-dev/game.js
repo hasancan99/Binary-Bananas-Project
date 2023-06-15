@@ -220,6 +220,7 @@ function checkAnswer(index, correctAnswerIndex) {
   }
 }
 
+//function for when the games finished, and we want to display view results button
 const endGameButton = (result = "lost") => {
   // Clear the game div completely
   const game = document.querySelector("#game");
@@ -230,15 +231,11 @@ const endGameButton = (result = "lost") => {
   newGameDiv.id = "game";
   newGameDiv.style.textAlign = "center";
 
+  // append new button, plus text and gif corresponding to if user won or lost
   const body = document.querySelector("body");
   body.appendChild(newGameDiv);
 
   const h3Element = document.createElement("h3");
-  if (result === "won") {
-    h3Element.textContent = "Well done! You managed to escape the dinosaur.";
-  } else {
-    h3Element.textContent = "Bad luck you've been eaten!";
-  }
 
   newGameDiv.appendChild(h3Element);
 
@@ -248,11 +245,49 @@ const endGameButton = (result = "lost") => {
     // updateScore(username, currentScore);
     window.location.href = "leaderboard.html";
   });
-  newGameDiv.appendChild(endButton);
 
   const h5Element = document.createElement("h5");
   h5Element.textContent =
     "Click through to see your position on the leaderboard.";
+
+  if (result === "won") {
+    h3Element.textContent = "Well done! You managed to escape the dinosaur.";
+    const iframeDiv = document.createElement("div");
+
+    const iframeElement = document.createElement("iframe");
+    iframeElement.src = "https://giphy.com/embed/M0j7tf1ANjqcAwedMM";
+    iframeElement.width = "480";
+    iframeElement.height = "318";
+    iframeElement.frameBorder = "0";
+    iframeElement.className = "giphy-embed";
+    iframeElement.allowFullscreen = true;
+
+    const iframeLink = document.createElement("p");
+    iframeDiv.appendChild(iframeElement);
+    iframeDiv.appendChild(iframeLink);
+
+    newGameDiv.appendChild(iframeDiv);
+  } else {
+    h3Element.textContent = "Bad luck you've been eaten!";
+    //adding the gif for eaten beast
+    const iframeDiv = document.createElement("div");
+
+    const iframeElement = document.createElement("iframe");
+    iframeElement.src = "https://giphy.com/embed/T62sjBzozTC6Y";
+    iframeElement.width = "480";
+    iframeElement.height = "270";
+    iframeElement.frameBorder = "0";
+    iframeElement.className = "giphy-embed";
+    iframeElement.allowFullscreen = true;
+
+    const iframeLink = document.createElement("p");
+
+    iframeDiv.appendChild(iframeElement);
+    iframeDiv.appendChild(iframeLink);
+
+    newGameDiv.appendChild(iframeDiv);
+  }
+  newGameDiv.appendChild(endButton);
   newGameDiv.appendChild(h5Element);
 };
 

@@ -192,6 +192,7 @@ function checkAnswer(index, correctAnswerIndex) {
 
     // If the user gets eaten
     if (userPosition === dinoPosition) {
+      document.getElementById('question').innerText = ''
       endGame();
     } else {
       // Restart the timer for a new question if the game is not over

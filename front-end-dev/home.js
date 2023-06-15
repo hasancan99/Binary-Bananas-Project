@@ -1,12 +1,4 @@
 
-/**This file is in charge of the leaderboard and username submit features.
- * These features could all be placed inside of of the index.js in the 
- * future to make it easily accessible as they all belong on the same page.
- * Another option could be to bundle the two JS files.
- */
-
-
-
 // Update the username form submission event.
 document.querySelector('#userInput').addEventListener("submit", async event => {
     event.preventDefault();
@@ -35,8 +27,8 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
                 // Store the username in localStorage
                 localStorage.setItem('username', userInputName);
 
-                // Redirect to index.html
-                window.location.href = 'index.html';
+                // Redirect to game.html
+                window.location.href = 'game.html';
             } else {
                 // If the username doesn't exist, show an error
                 alert("Username does not exist.");
@@ -73,10 +65,10 @@ const userData = async (username) => {
             data[i].totalScore
           } points`;
           if (username === data[i]["username"]) {
-            listElement.style.backgroundColor = "green";
+            listElement.style.backgroundColor = "#4CAF50";
             const position = i;
             const h3 = document.createElement("h3");
-            h3.textContent = `Well done in you are in ${ordinal_suffix_of(
+            h3.textContent = `You are in ${ordinal_suffix_of(
               positionCount
             )} position!`;
             leaderboardList.prepend(h3);
@@ -119,8 +111,8 @@ const addUser = async(username) => {
             console.log(`${username} successfully added`);
             localStorage.setItem('username', userInputName); // Store the username
 
-            // Redirect to index.html
-            window.location.href = 'index.html';
+            // Redirect to game.html
+            window.location.href = 'game.html';
         } else {
         throw "Error: http status code = " + resp.status;
        }

@@ -1,5 +1,5 @@
 /*default version*/
-@font-face { font-family: 'Burbank'; src: url('/front-end-dev/Burbank.otf') format('opentype')
+@font-face { font-family: 'Burbank'; src: url('./img/Burbank.otf') format('opentype')
   ; font-weight: normal; font-style: normal; }
 
 :root {

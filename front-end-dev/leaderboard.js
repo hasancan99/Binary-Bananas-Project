@@ -55,12 +55,27 @@ const userData = async (username) => {
           positionCount++;
         }
 
+        // add information to 3 spans in a li element
         const leaderboardList = document.querySelector("#leaderboardList");
         const listElement = document.createElement("li");
-        listElement.textContent = `${ordinal_suffix_of(positionCount)}: ${
-          data[i].username
-        } - ${data[i].totalScore} points`;
-        if (username === data[i]["username"]) {
+        const span1 = document.createElement("span");
+        const span2 = document.createElement("span");
+        const span3 = document.createElement("span");
+        span1.textContent = `${ordinal_suffix_of(positionCount)}:`;
+        span2.textContent = `${data[i].username}`;
+        span3.textContent = `${data[i].totalScore} points`;
+        listElement.append(span1, span2, span3);
+
+        // Apply CSS classes to the spans
+        span1.classList.add("leaderboard-position");
+        span2.classList.add("leaderboard-username");
+        span3.classList.add("leaderboard-score");
+
+        // Add CSS classes to the list element
+
+        listElement.classList.add("leaderboard-row");
+
+        if (username === data[i].username) {
           listElement.style.backgroundColor = "#4CAF50";
           const position = i;
           const h3 = document.createElement("h3");
@@ -69,11 +84,12 @@ const userData = async (username) => {
           )} position!`;
           leaderboardList.prepend(h3);
         }
+
         leaderboardList.appendChild(listElement);
       }
       return data;
     } else {
-      throw "Error: http status code = " + resp.status;
+      throw "Error: HTTP status code = " + resp.status;
     }
   } catch (err) {
     console.log(err);

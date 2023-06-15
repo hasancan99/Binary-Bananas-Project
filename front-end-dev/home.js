@@ -143,11 +143,29 @@ const addScore = async(username, totalScore) => {
         }
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
-//retrieve leaderboard when button pressed
-document.querySelector("#revealLeaderboard").addEventListener("click", async (e) => {
+// Retrieve leaderboard when button pressed
+const leaderboardButton = document.querySelector("#revealLeaderboard");
+const leaderboard = document.querySelector("#Leaderboard");
+let leaderboardVisible = false;
+let leaderboardGenerated = false; // Track if the leaderboard has been generated
+
+leaderboardButton.addEventListener("click", async (e) => {
   const username = localStorage.getItem('username');
+  
+  // If leaderboard has already been generated, toggle visibility only
+  if (leaderboardGenerated) {
+    leaderboardVisible = !leaderboardVisible;
+    leaderboard.hidden = !leaderboardVisible;
+    return;
+  }
+  
   const users = await userData(username);
-  const leaderboard = document.querySelector("#Leaderboard");
+
+  // Toggle leaderboard visibility
+  leaderboardVisible = true;
   leaderboard.hidden = false;
+
+  leaderboardGenerated = true; // Set the leaderboard as generated
 });
+
 

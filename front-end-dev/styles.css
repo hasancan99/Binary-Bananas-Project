@@ -102,6 +102,19 @@ header nav a:hover {
     height: 292px;
     width: 362px;
     display: block;
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-22px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
 }
 
 #player {

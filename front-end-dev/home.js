@@ -1,43 +1,43 @@
 
-// Update the username form submission event.
 document.querySelector('#userInput').addEventListener("submit", async event => {
-    event.preventDefault();
-    let userInputName = document.querySelector('#username').value;
-    
-    // Determine whether the event is for registration or login based on the clicked button's id
-    let action = event.submitter.id;
+  event.preventDefault();
+  let userInputName = document.querySelector('#username').value;
 
-    // Fetch all usernames
-    const resp = await fetch('http://localhost:3000/usernames');
-    if (resp.ok) {
-        const usernames = await resp.json();
+  // Determine whether the event is for registration or login based on the clicked button's id
+  let action = event.submitter.id;
 
-        // Registering a new user
-        if (action === 'register') {
-            if (usernames.includes(userInputName)) {
-                // If the username already exists, show an error
-                alert("Username already exists.");
-            } else {
-                // If the username doesn't exist, create new user
-                addUser(userInputName);
-            }
-        } else if (action === 'login') {
-            // Log in existing user
-            if (usernames.includes(userInputName)) {
-                // Store the username in localStorage
-                localStorage.setItem('username', userInputName);
+  // Fetch all usernames
+  const resp = await fetch('http://localhost:3000/usernames');
+  if (resp.ok) {
+      const usernames = await resp.json();
 
-                // Redirect to game.html
-                window.location.href = 'game.html';
-            } else {
-                // If the username doesn't exist, show an error
-                alert("Username does not exist.");
-            }
-        }
-    } else {
-        console.log("Error: " + resp.status);
-    }
-})
+      // Registering a new user
+      if (action === 'register') {
+          if (usernames.includes(userInputName)) {
+              // If the username already exists, show an error
+              alert("Username already exists.");
+          } else {
+              // If the username doesn't exist, create new user
+              addUser(userInputName);
+          }
+      } else if (action === 'login') {
+          // Log in existing user
+          if (usernames.includes(userInputName)) {
+              // Store the username in localStorage
+              localStorage.setItem('username', userInputName);
+
+              // Redirect to game.html
+              window.location.href = 'game.html';
+          } else {
+              // If the username doesn't exist, show an error
+              alert("Username does not exist.");
+          }
+      }
+  } else {
+      console.log("Error: " + resp.status);
+  }
+});
+
 
 
 
@@ -144,14 +144,10 @@ const addScore = async(username, totalScore) => {
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
 //retrieve leaderboard when button pressed
-document.querySelector("#revealLeaderboard").addEventListener("click", (e) => {
-  const users = userData("hasan");
+document.querySelector("#revealLeaderboard").addEventListener("click", async (e) => {
+  const username = localStorage.getItem('username');
+  const users = await userData(username);
   const leaderboard = document.querySelector("#Leaderboard");
   leaderboard.hidden = false;
 });
-//add user when submitted
-document.querySelector("#userInput").addEventListener("submit", (e) => {
-  e.preventDefault();
-  let userInputName = document.querySelector("#username").value;
-  addUser(userInputName);
-});
+

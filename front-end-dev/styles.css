@@ -1,6 +1,6 @@
 :root {
     --font-stack: Helvetica, Arial, sans-serif;
-    --background-color: #f3f3f3;
+    --background-color: #ffffff;
     --text-color: #333;
     --link-color: #4CAF50;
     --link-color-hover: #326935;
@@ -98,17 +98,17 @@ header nav a:hover {
 
 
 #beast {
-    grid-column: 1;
-    background: url('img/dinosaur.png') center/cover;
-    height: 225px;
-    width: 279px;
+    grid-column: 2;
+    background: url('img/dinosaur.gif') center/cover;
+    height: 292px;
+    width: 362px;
     display: block;
 }
 
 #player {
     grid-column: 4;
-    background: url('img/wolf.png') center/cover;
-    margin-top: 113px;
+    background: url('img/human.gif') center/cover;
+    margin-top: 148px;
     height: 112px;
     width: 140px;
     display: block;
@@ -117,7 +117,7 @@ header nav a:hover {
 #options {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 

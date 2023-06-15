@@ -6,7 +6,7 @@ console.log(`The username is: ${username}`);
 
 let questionNumber = 1;
 let incorrectAnswers = 0;
-let dinoPosition = 1;
+let dinoPosition = 2;
 let userPosition = 4;
 let countdownInterval = null;
 let countdown = 10;
@@ -209,7 +209,7 @@ document.getElementById('newGameButton').addEventListener('click', function () {
   // Reset scores and positions
   questionNumber = 1;
   incorrectAnswers = 0;
-  dinoPosition = 1;
+  dinoPosition = 2;
   userPosition = 4;
 
   // Reset status

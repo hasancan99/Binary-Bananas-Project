@@ -50,19 +50,6 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
 
 
 
-//retrieve leaderboard when button pressed
-document.querySelector("#revealLeaderboard").addEventListener("click", (e) => {
-    const users = userData("emmajones");
-    const leaderboard = document.querySelector("#Leaderboard");
-    leaderboard.hidden = false;
-  });
-  //add user when submitted
-  document.querySelector("#userInput").addEventListener("submit", (e) => {
-    event.preventDefault();
-    let userInputName = document.querySelector("#username").value;
-    addUser(userInputName);
-  });
-
 
 //function to retrieve and order data for leaderboard
 const userData = async (username) => {
@@ -82,9 +69,9 @@ const userData = async (username) => {
           const listElement = document.createElement("li");
           listElement.textContent = `${ordinal_suffix_of(
             positionCount
-          )} Username : ${data[i].username}   Total Score : ${
+          )}: ${data[i].username} - ${
             data[i].totalScore
-          }`;
+          } points`;
           if (username === data[i]["username"]) {
             listElement.style.backgroundColor = "green";
             const position = i;
@@ -164,3 +151,15 @@ const addScore = async(username, totalScore) => {
         }
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
+//retrieve leaderboard when button pressed
+document.querySelector("#revealLeaderboard").addEventListener("click", (e) => {
+  const users = userData("hasan");
+  const leaderboard = document.querySelector("#Leaderboard");
+  leaderboard.hidden = false;
+});
+//add user when submitted
+document.querySelector("#userInput").addEventListener("submit", (e) => {
+  e.preventDefault();
+  let userInputName = document.querySelector("#username").value;
+  addUser(userInputName);
+});

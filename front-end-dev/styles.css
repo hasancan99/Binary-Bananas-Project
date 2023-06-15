@@ -63,6 +63,9 @@ header nav a:hover {
     font-size: 24px;
 }
 
+#score {
+    font-size: 24px;
+}
 
 #grid {
     position: relative;
@@ -149,54 +152,3 @@ button:hover {
     font-size: 24px;
     color: red;
 }
-
-/* background hew when textbox is open */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(43, 40, 40, 0.4);
-    backdrop-filter: blur(10px);
-  }
-  
-  /* outerbox for the popup box */
-  .modal-content {
-    background-color: #4CAF50;
-    margin: 15% auto;
-    padding: 30px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-  }
-
-  /* textbox functions 'x' button */
-  .close {
-    color: #bd6565;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  /* Hover colors and functions */
-  .close:hover,
-  .close:focus {
-    color: rgb(225, 23, 23);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  #messageTextarea {
-    width: 100%;
-    height: 200px;
-    resize: none;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 17px;
-  }
-  
-  

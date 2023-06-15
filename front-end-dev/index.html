@@ -6,29 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/front-end-dev/styles.css">
     <title>Dino Chase</title>
-    <script src="/front-end-dev/index.js" defer></script>
-    <script src="/front-end-dev/home.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Dino Chase</h1>
         <nav>
-            <button onClick="openModal()">How to play</button>
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                  <span class="close" onclick="closeModal()">&times;</span>
-                  <h2>How to play</h2>
-                  <div id="messageContainer">
-                    <textarea id="messageTextarea" readonly></textarea>
-                  </div>
-                </div>
-              </div>
-            <a href="https://www.bbc.co.uk/bitesize/subjects/zkw76sg"><button>Study more</button></a>
-            <!-- <a href="profile.html">My Profile</a> -->
-            <button id="#revealLeaderboard">Leaderboard</button>
+            <a href="study.html">Study More</a>
+            <a href="how-to-play.html">How to Play</a>
+            <a href="profile.html">My Profile</a>
+            <a href="leaderboard.html">Leaderboard</a>
         </nav>
     </header>
-
     <main id="game">
         <center>
             <h2 id="question"></h2>
@@ -36,13 +24,15 @@
         </center>        
         <div id="options"></div>
         <h3 id="status">Pick the right answer!</h3>
+        <h3 id="score"></h3>
         <div id="buttonContainer">
-            <button id="newGameButton" style="display:none">Play Game</button>
+            <button id="newGameButton" style="display:none">Try again</button>
         </div>
         <section id="grid">
             <div id="beast"></div>
             <div id="player"></div>
         </section>
     </main>
+    <script src="/front-end-dev/index.js"></script>
 </body>
 </html>

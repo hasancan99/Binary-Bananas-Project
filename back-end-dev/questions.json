@@ -42,7 +42,7 @@
         "Mexico",
         "Brazil"
       ],
-      "correct_answer": 1
+      "correct_answer": 0
     },
     {
       "number": 5,
@@ -53,7 +53,7 @@
         "Solar power",
         "Nuclear power"
       ],
-      "correct_answer": 3
+      "correct_answer": 2
     },
     {
       "number": 6,
@@ -64,7 +64,7 @@
         "Vancouver",
         "Montreal"
       ],
-      "correct_answer": 2
+      "correct_answer": 1
     },
     {
       "number": 7,
@@ -75,7 +75,7 @@
         "South America",
         "Africa"
       ],
-      "correct_answer": 1
+      "correct_answer": 0
     },
     {
       "number": 8,
@@ -86,7 +86,7 @@
         "Indian Ocean",
         "Arctic Ocean"
       ],
-      "correct_answer": 1
+      "correct_answer": 0
     },
     {
       "number": 9,
@@ -97,7 +97,7 @@
         "Canada",
         "China"
       ],
-      "correct_answer": 1
+      "correct_answer": 0
     },
     {
       "number": 10,
@@ -108,7 +108,7 @@
         "South America",
         "Europe"
       ],
-      "correct_answer": 1
+      "correct_answer": 0
     }
   ]
 }

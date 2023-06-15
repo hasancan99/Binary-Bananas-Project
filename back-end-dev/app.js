@@ -65,7 +65,7 @@ app.post("/add-user/:user", (req, res) => {
 
 // Adds totalscore
 app.post("/add-totalScore/:user/:score", (req, res) => {
-  const totalScore = parseInt(req.params.score);
+  const totalScore = req.params.score;
   const user = req.params.user;
   //check whether a username and score has been entered
   if (!user) {
@@ -74,22 +74,20 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
   if (!totalScore) {
     return res.status(400).json({ error: "Score not found" });
   }
-
-  //find the user in the leaderboard
-  const checkUser = leaderboard.find((element) => element.username === user);
-
+  //find the user in the leaderboard and the find it's index in the json file
+  const checkUser = leaderboard.find((element) => element["username"] === user);
+  const checkUserIndex = leaderboard.findIndex(
+    (element) => element.username === user
+  );
   //if user isnt in the leaderboard - return error
   if (!checkUser) {
     return res.status(404).json({ error: "User not found" });
   }
-
   //update the users score- and then write to the json file
-  checkUser.totalScore = totalScore;
-  fs.writeFileSync("./people.json", JSON.stringify(leaderboard), "utf8");
-
+  leaderboard[checkUserIndex]["totalScore"] = totalScore;
+  fs.writeFile("./people.json", JSON.stringify(leaderboard), "utf8");
   res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
-
 
 // New endpoint to check if a username exists
 app.get("/usernames", (req, res) => {

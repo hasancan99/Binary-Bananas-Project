@@ -1,5 +1,6 @@
 // Import the username from localStorage
 let username = localStorage.getItem('username');
+const fetch = require('node-fetch');
 
 // You can now use this username anywhere in your index.js file. For example:
 console.log(`The username is: ${username}`);
@@ -30,39 +31,45 @@ const getCurrentScore = async (username) => {
 };
 
 // ELLIOT
-const updateScore = async (username, score) => {
-    try {
-      const resp = await fetch(`http://localhost:3000/add-totalScore/${username}/${score}`, {
-        method: "POST"
-      });
+const updateScore = async(username, totalScore) => {
+  try {
+      const resp = await fetch(`http://localhost:3000/add-totalScore/${username}/${totalScore}`, {
+          method: "POST",
+          body: JSON.stringify({}),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+      })
       if (resp.ok) {
-        console.log(`Score updated: ${score}`);
+          console.log(`${totalScore} successfully added`);
       } else {
-        throw "Error: http status code = " + resp.status;
-      }
+      throw "Error: http status code = " + resp.status;
+     }
     } catch (err) {
-      console.log(err);
+     console.log(err);
     }
-};
+  }
 
-// Use the getCurrentScore function
-getCurrentScore(username).then(score => {
-    currentScore = score; // Update the currentScore variable
-    console.log(`The current score is: ${currentScore}`); // Log the current score
-  });
+
 
 
 
 
 // When pages loads run playGame function
 window.onload = () => {
+//   // Use the getCurrentScore function
+//   getCurrentScore(username).then(score => {
+//     currentScore = score; // Update the currentScore variable
+//     console.log(`The current score is: ${currentScore}`); // Log the current score
+// });
     playGame()
 }
 
 //Reveals play game button which when clicked starts the quiz
 const playGame = () =>{
     document.getElementById('newGameButton').style.display = 'block'
-    document.getElementById('newGameButton').addEventListener('click', function() {
+    document.getElementById('newGameButton').addEventListener('click', function(event) {
         console.log("button pressed")
         document.getElementById('newGameButton').style.display = 'none'
         nextQuestion()})
@@ -75,11 +82,18 @@ const endGame = (gameWon = false) => {
     // Clear countdown interval to stop the timer
     clearInterval(countdownInterval);
     document.getElementById('countdown').innerText = ''
+    console.log(username)
+    console.log(currentScore)
+    //updateScore(username, currentScore)
+    score=getCurrentScore(username)
+    console.log(score)
 
     // If gameWon parameter is true then display a different message to game lost message
     // Update the status text to indicate the game is over
     if(gameWon){
-        document.getElementById('status').innerText =  "CONGRATULATIONS! You've survived."
+        document.getElementById('question').innerText = "CONGRATULATIONS! You've survived."
+        document.getElementById('status').innerText =  `Check your score on the Leaderboard! Your Score was ${score}`
+
     }else{
         document.getElementById('status').innerText = ' The dinosaur caught you. Game over!'}
 
@@ -91,7 +105,7 @@ const endGame = (gameWon = false) => {
     document.getElementById("beast").style.display = 'none'
 
     //change the play game button to New Game
-    document.getElementById('newGameButton').innerHTML = 'New Game' 
+    document.getElementById('newGameButton').innerHTML = 'Leaderboard' 
     // Show new game button
     document.getElementById('newGameButton').style.display = 'block'
 
@@ -100,7 +114,7 @@ const endGame = (gameWon = false) => {
         // Hide new game button.
         
         document.getElementById('newGameButton').style.display = 'none'
-
+        
         // Reset scores and positions
         questionNumber = 1
         incorrectAnswers = 0
@@ -108,7 +122,7 @@ const endGame = (gameWon = false) => {
         userPosition = 4
 
         // Reset status
-        document.getElementById('status').innerText = 'Pick the right answer!'
+        //document.getElementById('status').innerText = 'Pick the right answer!'
 
         // Show and reset dino and player position
         document.getElementById("player").style.gridColumn = userPosition
@@ -117,7 +131,10 @@ const endGame = (gameWon = false) => {
         document.getElementById("beast").style.display = 'block'
 
         // Run game again
-        nextQuestion()
+        //nextQuestion()
+        //commented out to prevent player playing the game multiple times
+        //Show leaderboard function here
+
     })
 }
 
@@ -176,6 +193,7 @@ function nextQuestion() {
                 // If time runs out they lose a position
                 if (userPosition === dinoPosition) {
                     endGame()
+                    
                 }
                 else if (countdown < 0) {
                     clearInterval(countdownInterval)
@@ -190,14 +208,15 @@ function nextQuestion() {
 
                     // ELLIOT Decremenet user score on locally and on server
                     currentScore--
-                    updateScore(username, currentScore)
-                    
+                    //updateScore(username, currentScore)
+                    console.log(currentScore)
                     // Go to the next question
                     questionNumber++
                     nextQuestion()
 
                 }else {
                     // Otherwise, update the countdown with the remaining time
+                    
                     document.getElementById('countdown').innerText = countdown + ' seconds remaining.'
                 }
             }, 1000)
@@ -226,7 +245,8 @@ function checkAnswer(index, correctAnswerIndex) {
 
         // ELLIOT Increment user score and on server too
         currentScore++
-        updateScore(username, currentScore)
+        // updateScore(username, currentScore)
+        console.log(currentScore)
 
         // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
         document.getElementById("player").style.gridColumn = userPosition < 8 ? ++userPosition : userPosition
@@ -240,7 +260,8 @@ function checkAnswer(index, correctAnswerIndex) {
 
         // ELLIOT Decremenet user score on locally and on server
         currentScore--
-        updateScore(username, currentScore)
+        //updateScore(username, currentScore)
+        console.log(currentScore)
 
         // Move the dinosaur one place to the right. '++' is before 'dinoPosition' so it increments it before returning it
         document.getElementById("player").style.gridColumn = --userPosition

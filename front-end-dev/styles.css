@@ -64,6 +64,41 @@ header nav a:hover {
     padding: 10px 0;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: var(--background-color);
+  }
+  
+  footer .left {
+    margin-left: 20px;
+    color: rgba(0, 0, 0, 0.6); /* Slightly greyed out color */
+  }
+  
+  footer .right {
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.6); /* Slightly greyed out color */
+  }
+  
+
+
+
 #username {
     font-size: 24px;
 }
@@ -148,6 +183,23 @@ button {
 button:hover {
     background-color: var(--button-background-hover);
 }
+
+questionbutton {
+    padding: 18px;
+    margin-top: px;
+    font-size: 22px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.35rem;
+    transition: background-color 0.3s ease;
+}
+
+questionbutton:hover {
+    background-color: var(--button-background-hover);
+}
+
 
 
 #buttonContainer {
@@ -284,10 +336,6 @@ main {
     margin: 20px auto;
     padding: 50px;
     max-width: 700px;
-    border: 1px solid var(--border-color);
-    border-radius: 0.25rem;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    background-color: #fff;
     line-height: 1.6;
     font-size: 18px;
 }
@@ -297,7 +345,7 @@ main {
 }
 
 #content h2 {
-    font-size: 24px;
+    font-size: 32px;
     color: var(--text-color);
     margin-top: 1em;
     margin-bottom: 0.5em;

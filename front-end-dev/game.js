@@ -96,7 +96,7 @@ function nextQuestion() {
       // For each possible answer
       for (let i = 0; i < question.answers.length; i++) {
         // Create a new button element
-        let optionButton = document.createElement('button');
+        let optionButton = document.createElement('questionbutton');
 
         // Set the button's text to the current answer option
         optionButton.innerText = question.answers[i];

@@ -157,3 +157,103 @@ button:hover {
     font-size: 24px;
     color: red;
 }
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+#userInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 0.25rem;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+#userInput label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+#userInput input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 0.25rem;
+    border: 1px solid var(--input-border-color);
+    background-color: #ffffff; /* This makes the input field's background white */
+    color: var(--input-color);
+}
+
+#userInput button {
+    width: 100px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 0.25rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#register {
+    background-color: var(--button-background);
+}
+
+#register:hover {
+    background-color: var(--button-background-hover);
+}
+
+#login {
+    background-color: var(--link-color);
+}
+
+#login:hover {
+    background-color: var(--link-color-hover);
+}
+
+#revealLeaderboard {
+    padding: 10px;
+    font-size: 18px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+#revealLeaderboard:hover {
+    background-color: var(--button-background-hover);
+}
+
+#Leaderboard {
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+    border-radius: 0.25rem;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    font-size: 20px; /* Increase the font size of the leaderboard */
+}
+
+#leaderboardList {
+    list-style: none;
+    padding: 0;
+}
+
+#leaderboardList li {
+    margin-bottom: 8px; /* Increase the gap between list items */
+}
+
+
+

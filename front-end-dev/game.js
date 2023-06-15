@@ -173,52 +173,32 @@ function nextQuestion() {
 
 // Function to check if the chosen answer is correct
 function checkAnswer(index, correctAnswerIndex) {
-  // If the chosen answer is correct
   if (index === correctAnswerIndex) {
-    // Update the status text to indicate a correct answer
     document.getElementById("status").innerText =
       "Correct! You moved away from the dinosaur.";
-
-    // Increment the question number and fetch the next question by running nextQuestion again
     questionNumber++;
-
-    // ELLIOT Increment user score and update it on the server too
     currentScore++;
-    //updateScore(username, currentScore);
     document.getElementById("score").innerText = `Total score: ${currentScore}`;
-
-    // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
     document.getElementById("player").style.gridColumn =
       userPosition < 8 ? ++userPosition : userPosition;
-
     nextQuestion();
   } else {
-    // If the chosen answer is incorrect
-    // Increment the incorrect answers counter
     incorrectAnswers++;
-
-    // ELLIOT Decrement user score locally and on the server
     currentScore--;
-    //updateScore(username, currentScore);
     document.getElementById("score").innerText = `Total score: ${currentScore}`;
-
-    // Move the dinosaur one place to the right. '++' is before 'dinoPosition' so it increments it before returning it
     document.getElementById("player").style.gridColumn = --userPosition;
-
-    // Update the status text to indicate an incorrect answer
     document.getElementById("status").innerText =
       "Incorrect! The dinosaur is getting closer!";
-
-    // If the user gets eaten
     if (userPosition === dinoPosition) {
       document.getElementById("question").innerText = "";
       endGame();
     } else {
-      // Restart the timer for a new question if the game is not over
       nextQuestion();
     }
   }
 }
+
+
 
 //function for when the games finished, and we want to display view results button
 const endGameButton = (result = "lost") => {
@@ -240,22 +220,22 @@ const endGameButton = (result = "lost") => {
   newGameDiv.appendChild(h3Element);
 
   const endButton = document.createElement("button");
-  endButton.textContent = "See Results";
+  endButton.textContent = "Save Your Score";
   endButton.addEventListener("click", function () {
-    // updateScore(username, currentScore);
+    updateScore(username, currentScore);
     window.location.href = "leaderboard.html";
   });
 
   const h5Element = document.createElement("h5");
   h5Element.textContent =
-    "Click through to see your position on the leaderboard.";
+    "If you save you'll also get to see the leaderboard :)";
 
   if (result === "won") {
     h3Element.textContent = "Well done! You managed to escape the dinosaur.";
     const iframeDiv = document.createElement("div");
 
     const iframeElement = document.createElement("iframe");
-    iframeElement.src = "https://giphy.com/embed/M0j7tf1ANjqcAwedMM";
+    iframeElement.src = "./img/won.gif";
     iframeElement.width = "480";
     iframeElement.height = "318";
     iframeElement.frameBorder = "0";
@@ -273,7 +253,7 @@ const endGameButton = (result = "lost") => {
     const iframeDiv = document.createElement("div");
 
     const iframeElement = document.createElement("iframe");
-    iframeElement.src = "https://giphy.com/embed/T62sjBzozTC6Y";
+    iframeElement.src = "./img/eaten.gif";
     iframeElement.width = "480";
     iframeElement.height = "270";
     iframeElement.frameBorder = "0";

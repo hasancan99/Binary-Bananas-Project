@@ -61,7 +61,7 @@ const userData = async (username) => {
         const span1 = document.createElement("span");
         const span2 = document.createElement("span");
         const span3 = document.createElement("span");
-        span1.textContent = `${ordinal_suffix_of(positionCount)}:`;
+        span1.textContent = `${ordinal_suffix_of(positionCount)}`;
         span2.textContent = `${data[i].username}`;
         span3.textContent = `${data[i].totalScore} points`;
         listElement.append(span1, span2, span3);
@@ -76,7 +76,7 @@ const userData = async (username) => {
         listElement.classList.add("leaderboard-row");
 
         if (username === data[i].username) {
-          listElement.style.backgroundColor = "#4CAF50";
+          listElement.style.backgroundColor = "#1976d2d3";
           const position = i;
           const h3 = document.createElement("h3");
           h3.id = "h3leaderboard";

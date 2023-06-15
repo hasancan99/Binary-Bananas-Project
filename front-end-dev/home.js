@@ -67,7 +67,7 @@ const userData = async (username) => {
             data[i].totalScore
           } points`;
           if (username === data[i]["username"]) {
-            listElement.style.backgroundColor = "#4CAF50";
+            listElement.style.backgroundColor = "#1976d2d3";
             const position = i;
             const h3 = document.createElement("h3");
             h3.textContent = `You are in ${ordinal_suffix_of(

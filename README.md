@@ -61,4 +61,3 @@ Our group focussed on getting some back end functionality for the website before
 Currently no bugs noted. Previously, there was an issue where upon submitting the users score, the page would refresh - taking you back to the start of the game.
 We noticed that the code for writing to the json file (fs writefilesync), would cause the browser to refresh potentially due to the contents of a file being updated in the project.
 We fixed this, by only submitting the users score at the end of the game (rather than each round), and directing the user to a seperate leaderboard page.
-

@@ -1,15 +1,13 @@
-document
-  .querySelector("#userInput")
-  .addEventListener("submit", async (event) => {
-    event.preventDefault();
-    let userInputName = document.querySelector("#username").value;
+document.querySelector('#userInput').addEventListener("submit", async event => {
+  event.preventDefault();
+  let userInputName = document.querySelector('#username').value;
 
-    // Determine whether the event is for registration or login based on the clicked button's id
-    let action = event.submitter.id;
+  // Determine whether the event is for registration or login based on the clicked button's id
+  let action = event.submitter.id;
 
-    // Fetch all usernames
-    const resp = await fetch("http://localhost:3000/usernames");
-    if (resp.ok) {
+  // Fetch all usernames
+  const resp = await fetch('https://thedinochase.onrender.com/usernames');
+  if (resp.ok) {
       const usernames = await resp.json();
 
       // Registering a new user
@@ -75,7 +73,42 @@ const userData = async (username) => {
 
         listElement.classList.add("leaderboard-row");
 
-        leaderboardList.appendChild(listElement);
+
+//function to retrieve and order data for leaderboard
+const userData = async (username) => {
+    try {
+      const resp = await fetch("https://thedinochase.onrender.com/leaderboard/");
+      if (resp.ok) {
+        const data = await resp.json();
+        //set a counter to work out peoples position
+        let positionCount = 1;
+        //for loop to append each data element to leaderboard list on html
+        for (let i = 0; i < data.length; i++) {
+          if (i != 0 && data[i].totalScore != data[i - 1].totalScore) {
+            positionCount++;
+          }
+  
+          const leaderboardList = document.querySelector("#leaderboardList");
+          const listElement = document.createElement("li");
+          listElement.textContent = `${ordinal_suffix_of(
+            positionCount
+          )}: ${data[i].username} = ${
+            data[i].totalScore
+          } points`;
+          if (username === data[i]["username"]) {
+            listElement.style.backgroundColor = "#1976d2d3";
+            const position = i;
+            const h3 = document.createElement("h3");
+            h3.textContent = `You are in ${ordinal_suffix_of(
+              positionCount
+            )} position!`;
+            leaderboardList.prepend(h3);
+          }
+          leaderboardList.appendChild(listElement);
+        }
+        return data;
+      } else {
+        throw "Error: http status code = " + resp.status;
       }
       return data;
     } else {
@@ -103,37 +136,22 @@ function ordinal_suffix_of(i) {
 }
 
 //checks if submitted username exists, and adds to database if not
-const addUser = async (username) => {
-  try {
-    const resp = await fetch(`http://localhost:3000/add-user/${username}`, {
-      method: "POST",
-    });
-    if (resp.ok) {
-      console.log(`${username} successfully added`);
-      localStorage.setItem("username", userInputName); // Store the username
+const addUser = async(username) => {
+    try {
+        const resp = await fetch(`https://thedinochase.onrender.com/add-user/${username}`, {
+            method: "POST"
+        })
+        if (resp.ok) {
+            console.log(`${username} successfully added`);
+            localStorage.setItem('username', userInputName); // Store the username
 
-      // Redirect to game.html
-      window.location.href = "game.html";
-    } else {
-      throw "Error: http status code = " + resp.status;
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-//checks if username exists, and changes score of user
-const addScore = async (username, totalScore) => {
-  try {
-    const resp = await fetch(
-      `http://localhost:3000/add-totalScore/${username}/${totalScore}`,
-      {
-        method: "POST",
-        body: JSON.stringify({}),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+            // Redirect to game.html
+            window.location.href = 'game.html';
+        } else {
+        throw "Error: http status code = " + resp.status;
+       }
+      } catch (err) {
+       console.log(err);
       }
     );
     if (resp.ok) {
@@ -141,10 +159,27 @@ const addScore = async (username, totalScore) => {
     } else {
       throw "Error: http status code = " + resp.status;
     }
-  } catch (err) {
-    console.log(err);
-  }
-};
+
+//checks if username exists, and changes score of user 
+const addScore = async(username, totalScore) => {
+        try {
+            const resp = await fetch(`https://thedinochase.onrender.com/add-totalScore/${username}/${totalScore}`, {
+                method: "POST",
+                body: JSON.stringify({}),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+            })
+            if (resp.ok) {
+                console.log(`${totalScore} successfully added`);
+            } else {
+            throw "Error: http status code = " + resp.status;
+           }
+          } catch (err) {
+           console.log(err);
+          }
+        }
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
 // Retrieve leaderboard when button pressed

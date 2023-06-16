@@ -1,37 +1,39 @@
-document
-  .querySelector("#userInput")
-  .addEventListener("submit", async (event) => {
-    event.preventDefault();
-    let userInputName = document.querySelector("#username").value;
+if (document.querySelector("#userInput")) {
+  document
+    .querySelector("#userInput")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      let userInputName = document.querySelector("#username").value;
 
-    // Determine whether the event is for registration or login based on the clicked button's id
-    let action = event.submitter.id;
+      // Determine whether the event is for registration or login based on the clicked button's id
+      let action = event.submitter.id;
 
-    // Fetch all usernames
-    const resp = await fetch("http://localhost:3000/usernames");
-    if (resp.ok) {
-      const usernames = await resp.json();
+      // Fetch all usernames
+      const resp = await fetch("https://thedinochase.onrender.com/usernames");
+      if (resp.ok) {
+        const usernames = await resp.json();
 
-      // Registering a new user
-      if (action === "register") {
-        if (usernames.includes(userInputName)) {
-          // If the username already exists, show an error
-          alert("Username already exists.");
-        } else {
-          // If the username doesn't exist, create new user
-          addUser(userInputName);
-        }
-      } else if (action === "login") {
-        // Log in existing user
-        if (usernames.includes(userInputName)) {
-          // Store the username in localStorage
-          localStorage.setItem("username", userInputName);
+        // Registering a new user
+        if (action === "register") {
+          if (usernames.includes(userInputName)) {
+            // If the username already exists, show an error
+            alert("Username already exists.");
+          } else {
+            // If the username doesn't exist, create new user
+            addUser(userInputName);
+          }
+        } else if (action === "login") {
+          // Log in existing user
+          if (usernames.includes(userInputName)) {
+            // Store the username in localStorage
+            localStorage.setItem("username", userInputName);
 
-          // Redirect to game.html
-          window.location.href = "game.html";
-        } else {
-          // If the username doesn't exist, show an error
-          alert("Username does not exist.");
+            // Redirect to game.html
+            window.location.href = "game.html";
+          } else {
+            // If the username doesn't exist, show an error
+            alert("Username does not exist.");
+          }
         }
       }
     } else {
@@ -42,7 +44,7 @@ document
 // Function to retrieve and order data for leaderboard
 const userData = async (username) => {
   try {
-    const resp = await fetch("http://localhost:3000/leaderboard/");
+    const resp = await fetch("https://thedinochase.onrender.com/leaderboard/");
     if (resp.ok) {
       const data = await resp.json();
       // Set a counter to work out people's position
@@ -59,7 +61,7 @@ const userData = async (username) => {
         const span1 = document.createElement("span");
         const span2 = document.createElement("span");
         const span3 = document.createElement("span");
-        span1.textContent = `${ordinal_suffix_of(positionCount)}:`;
+        span1.textContent = `${ordinal_suffix_of(positionCount)}`;
         span2.textContent = `${data[i].username}`;
         span3.textContent = `${data[i].totalScore} points`;
         listElement.append(span1, span2, span3);
@@ -74,7 +76,7 @@ const userData = async (username) => {
         listElement.classList.add("leaderboard-row");
 
         if (username === data[i].username) {
-          listElement.style.backgroundColor = "#4CAF50";
+          listElement.style.backgroundColor = "#1976d2d3";
           const position = i;
           const h3 = document.createElement("h3");
           h3.id = "h3leaderboard";
@@ -114,7 +116,7 @@ function ordinal_suffix_of(i) {
 // Checks if submitted username exists and adds it to the database if not
 const addUser = async (username) => {
   try {
-    const resp = await fetch(`http://localhost:3000/add-user/${username}`, {
+    const resp = await fetch(`https://thedinochase.onrender.com/add-user/${username}`, {
       method: "POST",
     });
     if (resp.ok) {
@@ -135,7 +137,7 @@ const addUser = async (username) => {
 const addScore = async (username, totalScore) => {
   try {
     const resp = await fetch(
-      `http://localhost:3000/add-totalScore/${username}/${totalScore}`,
+      `https://thedinochase.onrender.com/add-totalScore/${username}/${totalScore}`,
       {
         method: "POST",
         body: JSON.stringify({}),

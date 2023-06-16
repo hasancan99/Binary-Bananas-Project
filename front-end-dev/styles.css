@@ -1,12 +1,16 @@
+/*default version*/
+@font-face { font-family: 'Burbank'; src: url('./Burbank.otf') format('opentype')
+  ; font-weight: normal; font-style: normal; }
+
 :root {
   --font-stack: Helvetica, Arial, sans-serif;
   --background-color: #ffffff;
   --text-color: #333;
-  --link-color: #4caf50;
-  --link-color-hover: #326935;
+  --link-color: #4285f4; /* Blue 400 from Google's Material Design */
+  --link-color-hover: #2b5797; /* Stronger shade of blue */
   --border-color: #dee2e6;
-  --button-background: #4caf50;
-  --button-background-hover: #45a049;
+  --button-background: #4285f4; /* Blue 400 from Google's Material Design */
+  --button-background-hover: #2b5797; /* Stronger shade of blue */
 }
 
 body {
@@ -28,19 +32,19 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: 34px;
+  font-size: 34x;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
 }
 
 header h1 a {
   color: var(--text-color);
   margin: 0;
-  font-size: 34px;
+  font-size: 52px;
   text-decoration: none;
 }
 
 header h1 a:hover {
   margin: 0;
-  font-size: 34px;
   color: var(--link-color);
 }
 
@@ -88,12 +92,12 @@ footer {
 
 footer .left {
   margin-left: 20px;
-  color: rgba(0, 0, 0, 0.6); /* Slightly greyed out color */
+  color: #6c82a3; /* Slightly bluish color */
 }
 
 footer .right {
   margin-right: 20px;
-  color: rgba(0, 0, 0, 0.6); /* Slightly greyed out color */
+  color: #6c82a3; /* Slightly bluish color */
 }
 
 #username {
@@ -105,9 +109,10 @@ footer .right {
 }
 
 #question {
-  font-size: 34px;
+  font-size: 48px;
   max-width: 800px;
   line-height: 50px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
 }
 
 #grid {
@@ -183,11 +188,12 @@ button:hover {
 }
 
 questionbutton {
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
   padding: 18px;
   margin-top: px;
-  font-size: 22px;
-  background-color: var(--button-background);
-  color: white;
+  font-size: 37px;
+  background-color: #1976d2; /* Light Blue 400 from Google's Material Design */
+  color: rgb(255, 255, 255);
   border: none;
   cursor: pointer;
   border-radius: 0.35rem;
@@ -195,8 +201,10 @@ questionbutton {
 }
 
 questionbutton:hover {
-  background-color: var(--button-background-hover);
+  background-color: #185da1; /* Light Blue 700 from Google's Material Design */
 }
+
+
 
 #buttonContainer {
   display: flex;
@@ -222,7 +230,7 @@ questionbutton:hover {
 
 #countdown {
   font-size: 24px;
-  color: red;
+  color: #bb1e1e; /* Blue 600 from Google's Material Design */
 }
 
 main {

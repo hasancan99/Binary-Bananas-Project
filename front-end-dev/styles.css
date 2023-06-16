@@ -646,4 +646,54 @@ hr {
   footer .right {
     margin: 10px 0;
   }
+  .leaderboard {
+    width: 90vw;
+  }
+
+  .leaderboard-row {
+    padding: 5px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard-position {
+    flex-basis: auto;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .leaderboard-user {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard-username, .leaderboard-score {
+    margin-left: 0;
+  }
+
+  #leaderTitle {
+    padding-left: 1rem;
+    font-size: 18px;
+  }
+
+  #h3leaderboard {
+    padding-bottom: 1rem;
+    font-size: 18px;
+  }
+
+  #leaderboardList {
+    width: 90vw;
+  }
+
+  #leaderboardList h3 {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  #leaderboardList li {
+    font-size: 14px;
+    margin-left: 0;
+    line-height: 20px;
+  }
 }
+  

@@ -35,11 +35,11 @@ if (document.querySelector("#userInput")) {
             alert("Username does not exist.");
           }
         }
-      } else {
-        console.log("Error: " + resp.status);
       }
-    });
-}
+    } else {
+      console.log("Error: " + resp.status);
+    }
+  });
 
 // Function to retrieve and order data for leaderboard
 const userData = async (username) => {

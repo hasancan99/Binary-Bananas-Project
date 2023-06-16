@@ -45,46 +45,61 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
 
 
 
-//function to retrieve and order data for leaderboard
+// Function to retrieve and order data for leaderboard
 const userData = async (username) => {
-    try {
-      const resp = await fetch("http://localhost:3000/leaderboard/");
-      if (resp.ok) {
-        const data = await resp.json();
-        //set a counter to work out peoples position
-        let positionCount = 1;
-        //for loop to append each data element to leaderboard list on html
-        for (let i = 0; i < data.length; i++) {
-          if (i != 0 && data[i].totalScore != data[i - 1].totalScore) {
-            positionCount++;
-          }
-  
-          const leaderboardList = document.querySelector("#leaderboardList");
-          const listElement = document.createElement("li");
-          listElement.textContent = `${ordinal_suffix_of(
-            positionCount
-          )}: ${data[i].username} = ${
-            data[i].totalScore
-          } points`;
-          if (username === data[i]["username"]) {
-            listElement.style.backgroundColor = "#1976d2d3";
-            const position = i;
-            const h3 = document.createElement("h3");
-            h3.textContent = `You are in ${ordinal_suffix_of(
-              positionCount
-            )} position!`;
-            leaderboardList.prepend(h3);
-          }
-          leaderboardList.appendChild(listElement);
+  try {
+    const resp = await fetch("http://localhost:3000/leaderboard/");
+    if (resp.ok) {
+      const data = await resp.json();
+      // Set a counter to work out people's position
+      let positionCount = 1;
+      // For loop to append each data element to leaderboard list on HTML
+      for (let i = 0; i < data.length; i++) {
+        if (i != 0 && data[i].totalScore != data[i - 1].totalScore) {
+          positionCount++;
         }
-        return data;
-      } else {
-        throw "Error: http status code = " + resp.status;
+
+        // add information to 3 spans in a li element
+        const leaderboardList = document.querySelector("#leaderboardList");
+        const listElement = document.createElement("li");
+        const span1 = document.createElement("span");
+        const span2 = document.createElement("span");
+        const span3 = document.createElement("span");
+        span1.textContent = `${ordinal_suffix_of(positionCount)}`;
+        span2.textContent = `${data[i].username}`;
+        span3.textContent = `${data[i].totalScore} points`;
+        listElement.append(span1, span2, span3);
+
+        // Apply CSS classes to the spans
+        span1.classList.add("leaderboard-position");
+        span2.classList.add("leaderboard-username");
+        span3.classList.add("leaderboard-score");
+
+        // Add CSS classes to the list element
+        listElement.classList.add("leaderboard-row");
+
+        if (username === data[i].username) {
+          listElement.style.backgroundColor = "#1976d2d3";
+          const position = i;
+          const h3 = document.createElement("h3");
+          h3.id = "h3leaderboard";
+          h3.textContent = `You are in ${ordinal_suffix_of(
+            positionCount
+          )} position!`;
+          leaderboardList.prepend(h3);
+        }
+
+        leaderboardList.appendChild(listElement);
       }
-    } catch (err) {
-      console.log(err);
+      return data;
+    } else {
+      throw "Error: HTTP status code = " + resp.status;
     }
-  };
+  } catch (err) {
+    console.log(err);
+  }
+};
+
   
   // function to add suffix to users position in leaderboard
   function ordinal_suffix_of(i) {

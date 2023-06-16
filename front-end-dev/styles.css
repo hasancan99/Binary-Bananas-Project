@@ -1,6 +1,10 @@
 /*default version*/
-@font-face { font-family: 'Burbank'; src: url('./Burbank.otf') format('opentype')
-  ; font-weight: normal; font-style: normal; }
+@font-face {
+  font-family: 'Burbank';
+  src: url('./Burbank.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --font-stack: Helvetica, Arial, sans-serif;
@@ -69,14 +73,6 @@ header nav a:hover {
   padding: 10px 0 0;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
-}
-
 footer {
   display: flex;
   justify-content: space-between;
@@ -100,6 +96,14 @@ footer .left {
 footer .right {
   margin-right: 20px;
   color: #6c82a3; /* Slightly bluish color */
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #2b5797;
 }
 
 #username {
@@ -206,8 +210,6 @@ questionbutton:hover {
   background-color: #185da1; /* Light Blue 700 from Google's Material Design */
 }
 
-
-
 #buttonContainer {
   display: flex;
   justify-content: center;
@@ -232,7 +234,7 @@ questionbutton:hover {
 
 #countdown {
   font-size: 18px;
-  color: #bb1e1e; /* Blue 600 from Google's Material Design */
+  color: #f85959; /* Blue 600 from Google's Material Design */
 }
 
 main {
@@ -299,10 +301,8 @@ main {
   background-color: var(--link-color-hover);
 }
 
-
-
 #revealLeaderboard {
-  width: 280px;
+  width: 260px;
   height: 50px;
   font-size: 18px;
   cursor: pointer;
@@ -318,9 +318,6 @@ main {
   box-shadow: 0 7px 0 -2px #f85959, 0 15px 0 -4px #39a2db, 0 16px 10px -3px #39a2db;
 }
 
-
-
-
 #content {
   margin: -10px 0 0 0;
   padding: 15px;
@@ -331,6 +328,15 @@ main {
 
 #content p {
   margin-bottom: 1em;
+}
+
+#content a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#content a:hover {
+  color: #2b5797;
 }
 
 #content h2 {
@@ -376,8 +382,6 @@ main {
   margin-top: 1.5em;
   margin-bottom: 0em;
 }
-
-
 
 .leaderboard {
   background-color: #f7f7f7;
@@ -435,19 +439,6 @@ main {
   color: #666;
 }
 
-.leaderboard-position {
-  flex-basis: 15%;
-  text-align: center;
-}
-
-.leaderboard-username {
-  flex-grow: 1;
-}
-
-.leaderboard-score {
-  margin-left: auto;
-}
-
 #leaderTitle {
   margin-bottom: 2rem;
   padding-left: 2rem;
@@ -470,11 +461,15 @@ main {
 }
 
 #leaderboardList li {
- list-style-type: none;
- font-size: 16px;
- margin-left: -40px;
- line-height: 28px;
+  list-style-type: none;
+  font-size: 16px;
+  margin-left: -40px;
+  line-height: 28px;
 }
 
-
-
+hr {
+  height: 5px;
+  border: none;
+  margin: 20px 0;
+  border-top: 2px dotted #4285f4;
+}

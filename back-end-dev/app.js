@@ -65,6 +65,7 @@ app.post("/add-user/:user", (req, res) => {
 
 // Adds totalscore
 app.post("/add-totalScore/:user/:score", (req, res) => {
+  console.log("in here");
   const totalScore = parseInt(req.params.score);
   const user = req.params.user;
   //check whether a username and score has been entered
@@ -90,15 +91,11 @@ app.post("/add-totalScore/:user/:score", (req, res) => {
   res.status(200).json({ success: `Score updated: ${totalScore}` });
 });
 
-
 // New endpoint to check if a username exists
 app.get("/usernames", (req, res) => {
   const usernames = leaderboard.map((user) => user.username);
   res.json(usernames);
 });
-
-
-
 
 // CHECKSCORE ELLIOT
 app.get("/get-score/:user", (req, res) => {
@@ -115,6 +112,5 @@ app.get("/get-score/:user", (req, res) => {
   // If the user is found, return their score
   res.status(200).json(findUser.totalScore);
 });
-
 
 module.exports = app;

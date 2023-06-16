@@ -201,5 +201,3 @@ leaderboardButton.addEventListener("click", async (e) => {
   // Change button text
   leaderboardButton.textContent = 'Hide the Leaderboard';
 });
-
-

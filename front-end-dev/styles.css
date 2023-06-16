@@ -85,7 +85,7 @@ footer {
   transform: translateX(-50%);
   width: 80%;
   background-color: var(--background-color);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 footer .left {
@@ -355,6 +355,44 @@ main {
   margin-bottom: 0em;
 }
 
+
+#homepage {
+  margin: -10px 0 0 0;
+  padding: 15px;
+  width: 500px;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+#homepage p {
+  margin-bottom: 1em;
+}
+
+#homepage a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#homepage a:hover {
+  color: #2b5797;
+}
+
+#homepage h2 {
+  font-size: 38px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#homepage h3 {
+  font-size: 30px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
+
 #howtoplay {
   margin: 0 auto;
   padding: 15px;
@@ -365,6 +403,15 @@ main {
 
 #howtoplay p {
   margin-bottom: 1em;
+}
+
+#howtoplay a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#howtoplay a:hover {
+  color: #2b5797;
 }
 
 #howtoplay h2 {
@@ -473,3 +520,208 @@ hr {
   margin: 20px 0;
   border-top: 2px dotted #4285f4;
 }
+
+
+
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    font-size: 16px;
+    padding-bottom: 130px;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+
+  header h1 {
+    font-size: 42px;
+    padding: 10px 0;
+  }
+
+  header h1 a {
+    font-size: 42px;
+    padding: 10px 0;
+  }
+
+  header nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  header nav a {
+    font-size: 14px;
+    margin: 0 5px;
+  }
+
+  #username,
+  #score {
+    font-size: 16px;
+  }
+
+  #question {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  #grid {
+    grid-template-columns: repeat(4, 1fr);
+    height: 200px;
+  }
+
+  #beast {
+    height: 194px;
+    width: 181px;
+  }
+
+  #player {
+    margin-top: 98px;
+    height: 74px;
+    width: 90px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  questionbutton {
+    padding: 14px;
+    font-size: 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #newGameButton {
+    padding: 16px;
+    font-size: 20px;
+  }
+
+  #countdown {
+    font-size: 16px;
+  }
+
+  main {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  #userInput {
+    padding: 10px;
+  }
+
+  #userInput label,
+  #userInput input {
+    font-size: 14px;
+  }
+
+  #userInput button {
+    width: 80px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  #revealLeaderboard {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  #content,
+  #homepage,
+  #howtoplay {
+    width: 90vw;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  #content h2,
+  #homepage h2,
+  #howtoplay h2 {
+    font-size: 32px;
+  }
+
+  #content h3,
+  #homepage h3,
+  #howtoplay h3 {
+    font-size: 24px;
+  }
+
+  .leaderboard {
+    width: 90vw;
+  }
+
+  footer {
+    font-size: 12px;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    transform: translateX(0%);
+  }
+
+  footer .left,
+  footer .right {
+    margin: 10px 0;
+  }
+  .leaderboard {
+    width: 90vw;
+  }
+
+  .leaderboard-row {
+    padding: 5px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard-position {
+    flex-basis: auto;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .leaderboard-user {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard-username, .leaderboard-score {
+    margin-left: 0;
+  }
+
+  #leaderTitle {
+    padding-left: 1rem;
+    font-size: 18px;
+  }
+
+  #h3leaderboard {
+    padding-bottom: 1rem;
+    font-size: 18px;
+  }
+
+  #leaderboardList {
+    width: 90vw;
+  }
+
+  #leaderboardList h3 {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  #leaderboardList li {
+    font-size: 14px;
+    margin-left: 0;
+    line-height: 20px;
+  }
+  
+    label[for="username"] {
+        display: none;
+    }
+}
+  

@@ -1,3 +1,9 @@
+// Prefetch leaderboard data when page loads
+let leaderboardData;
+window.addEventListener('load', async () => {
+  leaderboardData = await userData();
+});
+
 
 document.querySelector('#userInput').addEventListener("submit", async event => {
   event.preventDefault();
@@ -7,7 +13,7 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
   let action = event.submitter.id;
 
   // Fetch all usernames
-  const resp = await fetch('https://thedinochase.onrender.com/usernames');
+  const resp = await fetch('http://localhost:3000/usernames');
   if (resp.ok) {
       const usernames = await resp.json();
 
@@ -48,7 +54,7 @@ document.querySelector('#userInput').addEventListener("submit", async event => {
 // Function to retrieve and order data for leaderboard
 const userData = async (username) => {
   try {
-    const resp = await fetch("https://thedinochase.onrender.com/leaderboard/");
+    const resp = await fetch("http://localhost:3000/leaderboard/");
     if (resp.ok) {
       const data = await resp.json();
       // Set a counter to work out people's position
@@ -121,7 +127,7 @@ const userData = async (username) => {
 //checks if submitted username exists, and adds to database if not
 const addUser = async(username) => {
     try {
-        const resp = await fetch(`https://thedinochase.onrender.com/add-user/${username}`, {
+        const resp = await fetch(`http://localhost:3000/add-user/${username}`, {
             method: "POST"
         })
         if (resp.ok) {
@@ -141,7 +147,7 @@ const addUser = async(username) => {
 //checks if username exists, and changes score of user 
 const addScore = async(username, totalScore) => {
         try {
-            const resp = await fetch(`https://thedinochase.onrender.com/add-totalScore/${username}/${totalScore}`, {
+            const resp = await fetch(`http://localhost:3000/add-totalScore/${username}/${totalScore}`, {
                 method: "POST",
                 body: JSON.stringify({}),
                 headers: {
@@ -184,7 +190,7 @@ leaderboardButton.addEventListener("click", async (e) => {
     return;
   }
   
-  const users = await userData(username);
+  const users = leaderboardData || await userData(username);
 
   // Toggle leaderboard visibility
   leaderboardVisible = true;

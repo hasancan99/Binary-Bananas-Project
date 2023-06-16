@@ -8,9 +8,9 @@ A brief description of your project.
 - [Description](#description)
 - [Usage](#usage)
 - [Features](#features)
-- [technologies](#technologies)
-- [process](#process)
-- [bugs](#bugs)
+- [Technologies](#technologies)
+- [Process](#process)
+- [Bugs](#bugs)
 - [Contributing](#contributing)
 - [License](#license)
 

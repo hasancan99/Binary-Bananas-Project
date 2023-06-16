@@ -11,8 +11,6 @@ The Binary Bananas group have made the fun and interative online quiz **DINO CHA
 - [Technologies](#technologies)
 - [Process](#process)
 - [Bugs](#bugs)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -64,12 +62,3 @@ Currently no bugs noted. Previously, there was an issue where upon submitting th
 We noticed that the code for writing to the json file (fs writefilesync), would cause the browser to refresh potentially due to the contents of a file being updated in the project.
 We fixed this, by only submitting the users score at the end of the game (rather than each round), and directing the user to a seperate leaderboard page.
 
-## Contributing
-
-Specify guidelines for contributing to your project. Include information on how others can report issues, suggest improvements, or submit pull requests.
-
-## License
-
-Indicate the license under which your project is distributed. For example:
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

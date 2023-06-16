@@ -405,6 +405,15 @@ main {
   margin-bottom: 1em;
 }
 
+#howtoplay a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#howtoplay a:hover {
+  color: #2b5797;
+}
+
 #howtoplay h2 {
   font-size: 38px;
   font-family: 'Burbank', Helvetica, Arial, sans-serif;

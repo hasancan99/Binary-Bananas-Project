@@ -355,6 +355,44 @@ main {
   margin-bottom: 0em;
 }
 
+
+#homepage {
+  margin: -10px 0 0 0;
+  padding: 15px;
+  width: 500px;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+#homepage p {
+  margin-bottom: 1em;
+}
+
+#homepage a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#homepage a:hover {
+  color: #2b5797;
+}
+
+#homepage h2 {
+  font-size: 38px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#homepage h3 {
+  font-size: 30px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
+
 #howtoplay {
   margin: 0 auto;
   padding: 15px;

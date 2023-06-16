@@ -1,3 +1,9 @@
+// Prefetch leaderboard data when page loads
+let leaderboardData;
+window.addEventListener('load', async () => {
+  leaderboardData = await userData();
+});
+
 
 document.querySelector('#userInput').addEventListener("submit", async event => {
   event.preventDefault();
@@ -184,7 +190,7 @@ leaderboardButton.addEventListener("click", async (e) => {
     return;
   }
   
-  const users = await userData(username);
+  const users = leaderboardData || await userData(username);
 
   // Toggle leaderboard visibility
   leaderboardVisible = true;

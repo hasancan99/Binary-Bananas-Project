@@ -51,11 +51,11 @@ Key Features
 
 ## Technologies
 
-List the key features or functionalities of your project. You can use bullet points or create separate sections for each feature, depending on the complexity.
+We used *express* for the back end server framework.
 
 ## Process
 
-List the key features or functionalities of your project. You can use bullet points or create separate sections for each feature, depending on the complexity.
+Our group focussed on getting some back end functionality for the website before looking at detail on the front-end. This meant being able to add to a user json file and being able to fetch the questions. 
 
 ## Bugs
 Currently no bugs noted. Previously, there was an issue where upon submitting the users score, the page would refresh - taking you back to the start of the game.

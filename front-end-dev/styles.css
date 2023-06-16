@@ -33,14 +33,14 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: 34x;
+  font-size: 30px;
   font-family: 'Burbank', Helvetica, Arial, sans-serif;
 }
 
 header h1 a {
   color: var(--text-color);
   margin: 0;
-  font-size: 52px;
+  font-size: 42px;
   text-decoration: none;
 }
 
@@ -50,7 +50,7 @@ header h1 a:hover {
 }
 
 header nav a {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   margin-left: 20px;
   text-decoration: none;
@@ -66,7 +66,7 @@ header nav a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 0;
 }
 
 header {
@@ -81,7 +81,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--border-color);
   position: fixed;
   bottom: 0;
@@ -89,6 +89,7 @@ footer {
   transform: translateX(-50%);
   width: 80%;
   background-color: var(--background-color);
+  font-size: 13px;
 }
 
 footer .left {
@@ -102,15 +103,15 @@ footer .right {
 }
 
 #username {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 #score {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 #question {
-  font-size: 48px;
+  font-size: 36px;
   max-width: 800px;
   line-height: 50px;
   font-family: 'Burbank', Helvetica, Arial, sans-serif;
@@ -173,9 +174,9 @@ footer .right {
 }
 
 button {
-  padding: 18px;
+  padding: 16px;
   margin-top: px;
-  font-size: 22px;
+  font-size: 18px;
   background-color: var(--button-background);
   color: white;
   border: none;
@@ -192,7 +193,7 @@ questionbutton {
   font-family: 'Burbank', Helvetica, Arial, sans-serif;
   padding: 18px;
   margin-top: px;
-  font-size: 37px;
+  font-size: 30px;
   background-color: #1976d2; /* Light Blue 400 from Google's Material Design */
   color: rgb(255, 255, 255);
   border: none;
@@ -230,7 +231,7 @@ questionbutton:hover {
 }
 
 #countdown {
-  font-size: 24px;
+  font-size: 18px;
   color: #bb1e1e; /* Blue 600 from Google's Material Design */
 }
 
@@ -275,7 +276,7 @@ main {
 #userInput button {
   width: 100px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 0.25rem;
   color: white;
   cursor: pointer;
@@ -298,28 +299,34 @@ main {
   background-color: var(--link-color-hover);
 }
 
+
+
 #revealLeaderboard {
-  padding: 10px;
+  width: 280px;
+  height: 50px;
   font-size: 18px;
-  background-color: var(--button-background);
-  color: white;
-  border: none;
   cursor: pointer;
-  border-radius: 0.25rem;
-  transition: background-color 0.3s ease;
+  background-color: var(--button-background);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: all .4s;
 }
 
-#revealLeaderboard:hover {
-  background-color: var(--button-background-hover);
+#revealLeaderboard:hover, #revealLeaderboard.active {
+  transform: translateY(-10px);
+  box-shadow: 0 7px 0 -2px #f85959, 0 15px 0 -4px #39a2db, 0 16px 10px -3px #39a2db;
 }
+
+
+
 
 #content {
-  margin: 20px auto;
-  padding: 50px;
+  margin: -10px 0 0 0;
+  padding: 15px;
   width: 50vw;
   line-height: 1.6;
   font-size: 18px;
-  text-align: center;
 }
 
 #content p {
@@ -327,18 +334,50 @@ main {
 }
 
 #content h2 {
-  font-size: 32px;
+  font-size: 38px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
   color: var(--text-color);
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
 #content h3 {
-  font-size: 20px;
+  font-size: 30px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
+
+#howtoplay {
+  margin: 0 auto;
+  padding: 15px;
+  width: 650px;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+#howtoplay p {
+  margin-bottom: 1em;
+}
+
+#howtoplay h2 {
+  font-size: 38px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
   color: var(--text-color);
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
+
+#howtoplay h3 {
+  font-size: 30px;
+  font-family: 'Burbank', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
+
+
 
 .leaderboard {
   background-color: #f7f7f7;
@@ -432,6 +471,7 @@ main {
 
 #leaderboardList li {
  list-style-type: none;
+ font-size: 16px;
  margin-left: -40px;
  line-height: 28px;
 }

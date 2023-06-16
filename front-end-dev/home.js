@@ -146,6 +146,10 @@ const addScore = async(username, totalScore) => {
 /** This function can be updated in the future to add on to the users score rather than replacing it */
 
 
+document.querySelector('#revealLeaderboard').addEventListener('click', function() {
+  this.classList.toggle('active');
+});
+
 // Retrieve leaderboard when button pressed
 const leaderboardButton = document.querySelector("#revealLeaderboard");
 const leaderboard = document.querySelector("#Leaderboard");

@@ -85,7 +85,7 @@ footer {
   transform: translateX(-50%);
   width: 80%;
   background-color: var(--background-color);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 footer .left {

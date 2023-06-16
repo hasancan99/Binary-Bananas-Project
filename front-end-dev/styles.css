@@ -20,6 +20,7 @@ body {
   padding: 20px;
   background-color: var(--background-color);
   color: var(--text-color);
+  padding-bottom: 60px;
 }
 
 header {
@@ -419,7 +420,21 @@ main {
 }
 
 #leaderboardList {
-  width: 50vw;
+  width: 500px;
   text-align: center;
   margin: auto;
 }
+
+#leaderboardList h3 {
+  margin-left: -40px;
+  font-size: 22px;
+}
+
+#leaderboardList li {
+ list-style-type: none;
+ margin-left: -40px;
+ line-height: 28px;
+}
+
+
+

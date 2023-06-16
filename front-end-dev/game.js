@@ -238,9 +238,6 @@ const endGameButton = (result = "lost") => {
     iframeElement.src = "./img/won.gif";
     iframeElement.width = "480";
     iframeElement.height = "318";
-    iframeElement.frameBorder = "0";
-    iframeElement.className = "giphy-embed";
-    iframeElement.allowFullscreen = true;
 
     const iframeLink = document.createElement("p");
     iframeDiv.appendChild(iframeElement);
@@ -254,11 +251,8 @@ const endGameButton = (result = "lost") => {
 
     const iframeElement = document.createElement("iframe");
     iframeElement.src = "./img/eaten.gif";
-    iframeElement.width = "480";
-    iframeElement.height = "270";
-    iframeElement.frameBorder = "0";
-    iframeElement.className = "giphy-embed";
-    iframeElement.allowFullscreen = true;
+    iframeElement.width = "500";
+    iframeElement.height = "281";
 
     const iframeLink = document.createElement("p");
 

@@ -1,5 +1,5 @@
 // Import the username from localStorage
-let username = localStorage.getItem('username');
+let username = localStorage.getItem("username");
 
 // You can now use this username anywhere in your index.js file. For example:
 console.log(`The username is: ${username}`);
@@ -11,9 +11,6 @@ let userPosition = 4;
 let countdownInterval = null;
 let countdown = 10;
 let currentScore = 0;
-
-
-
 
 // ELLIOT
 const getCurrentScore = async (username) => {
@@ -33,9 +30,12 @@ const getCurrentScore = async (username) => {
 // ELLIOT
 const updateScore = async (username, score) => {
   try {
-    const resp = await fetch(`http://localhost:3000/add-totalScore/${username}/${score}`, {
-      method: "POST"
-    });
+    const resp = await fetch(
+      `http://localhost:3000/add-totalScore/${username}/${score}`,
+      {
+        method: "POST",
+      }
+    );
     if (resp.ok) {
       console.log(`Score updated: ${score}`);
     } else {
@@ -47,11 +47,10 @@ const updateScore = async (username, score) => {
 };
 
 // Use the getCurrentScore function
-getCurrentScore(username).then(score => {
+getCurrentScore(username).then((score) => {
   currentScore = score; // Update the currentScore variable
   console.log(`The current score is: ${currentScore}`); // Log the current score
 });
-
 
 // When pages loads run nextQuestion function
 window.onload = () => {
@@ -61,23 +60,25 @@ window.onload = () => {
 const endGame = () => {
   // Clear countdown interval to stop the timer
   clearInterval(countdownInterval);
-  document.getElementById('countdown').innerText = '';
+  document.getElementById("countdown").innerText = "";
 
   // Update the status text to indicate the game is over
-  document.getElementById('status').innerText = ' The dinosaur caught you. Game over!';
+  document.getElementById("status").innerText =
+    " The dinosaur caught you. Game over!";
 
   // Clear the options div so no more answers can be chosen
-  document.getElementById('options').innerHTML = '';
+  document.getElementById("options").innerHTML = "";
 
   // Hide dino and player
-  document.getElementById("player").style.display = 'none';
-  document.getElementById("beast").style.display = 'none';
+  document.getElementById("player").style.display = "none";
+  document.getElementById("beast").style.display = "none";
 
   // Show new game button
-  document.getElementById('newGameButton').style.display = 'block';
+  document.getElementById("newGameButton").style.display = "block";
+  endGameButton();
 };
 
-document.getElementById('username').innerText = `Hi ${username}!`;
+document.getElementById("username").innerText = `Hi ${username}!`;
 
 function nextQuestion() {
   // Clear countdown interval if it's already set
@@ -87,24 +88,25 @@ function nextQuestion() {
 
   // Send a GET request to the server to fetch the next question
   fetch(`http://localhost:3000/next-question?questionNumber=${questionNumber}`)
-    .then(response => response.json())
-    .then(question => {
+    .then((response) => response.json())
+    .then((question) => {
+      console.log(question);
       // Get a reference to the options div and clear it
-      let optionsDiv = document.getElementById('options');
-      optionsDiv.innerHTML = '';
+      let optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
 
       // For each possible answer
       for (let i = 0; i < question.answers.length; i++) {
         // Create a new button element
-        let optionButton = document.createElement('questionbutton');
+        let optionButton = document.createElement("questionbutton");
 
         // Set the button's text to the current answer option
         optionButton.innerText = question.answers[i];
 
         // When an answer is chosen, clear the countdown interval and text
-        optionButton.addEventListener('click', () => {
+        optionButton.addEventListener("click", () => {
           clearInterval(countdownInterval);
-          document.getElementById('countdown').innerText = '';
+          document.getElementById("countdown").innerText = "";
           checkAnswer(i + 1, question.correct_answer);
         });
 
@@ -113,12 +115,13 @@ function nextQuestion() {
       }
 
       // Update the question text on the page
-      document.getElementById('question').innerText = question.question;
+      document.getElementById("question").innerText = question.question;
 
       // COUNTDOWN
       // Reset the countdown
       countdown = 10;
-      document.getElementById('countdown').innerText = countdown + ' seconds remaining.';
+      document.getElementById("countdown").innerText =
+        countdown + " seconds remaining.";
 
       // Begin the countdown
       countdownInterval = setInterval(() => {
@@ -135,49 +138,58 @@ function nextQuestion() {
           document.getElementById("player").style.gridColumn = --userPosition;
 
           // Update the status text to indicate an incorrect answer
-          document.getElementById('status').innerText = 'You ran out of time. New question!';
+          document.getElementById("status").innerText =
+            "You ran out of time. New question!";
 
           // ELLIOT Decrement user score on locally and on server
           currentScore--;
-          updateScore(username, currentScore);
-          document.getElementById('score').innerText = `Total score: ${currentScore}`;
+          //updateScore(username, currentScore);
+          document.getElementById(
+            "score"
+          ).innerText = `Total score: ${currentScore}`;
 
           // Go to the next question
           questionNumber++;
           nextQuestion();
         } else {
           // Otherwise, update the countdown with the remaining time
-          document.getElementById('countdown').innerText = countdown + ' seconds remaining.';
+          document.getElementById("countdown").innerText =
+            countdown + " seconds remaining.";
         }
       }, 1000);
 
       // When the first question is answered, display the score
       if (questionNumber === 2) {
-        document.getElementById('score').innerText = `Total score: ${currentScore}`;
+        document.getElementById(
+          "score"
+        ).innerText = `Total score: ${currentScore}`;
       }
     })
-    // If there's an error, log it to the console
-    .catch(error => console.error('Error:', error));
+    // If there's no more questions left
+    .catch((error) => {
+      endGameButton("won");
+    });
 }
-
 
 // Function to check if the chosen answer is correct
 function checkAnswer(index, correctAnswerIndex) {
   // If the chosen answer is correct
   if (index === correctAnswerIndex) {
     // Update the status text to indicate a correct answer
-    document.getElementById('status').innerText = 'Correct! You moved away from the dinosaur.';
+    document.getElementById("status").innerText =
+      "Correct! You moved away from the dinosaur.";
 
     // Increment the question number and fetch the next question by running nextQuestion again
     questionNumber++;
 
     // ELLIOT Increment user score and update it on the server too
     currentScore++;
-    updateScore(username, currentScore);
-    document.getElementById('score').innerText = `Total score: ${currentScore}`;
+    //updateScore(username, currentScore);
+    document.getElementById("score").innerText = `Total score: ${currentScore}`;
 
     // Make sure userPosition won't exceed 8 on the grid. If not move the user one place to the right. '++' is before 'userPosition' so it increments it before returning it.
-    document.getElementById("player").style.gridColumn = userPosition < 8 ? ++userPosition : userPosition;
+    document.getElementById("player").style.gridColumn =
+      userPosition < 8 ? ++userPosition : userPosition;
 
     nextQuestion();
   } else {
@@ -187,18 +199,19 @@ function checkAnswer(index, correctAnswerIndex) {
 
     // ELLIOT Decrement user score locally and on the server
     currentScore--;
-    updateScore(username, currentScore);
-    document.getElementById('score').innerText = `Total score: ${currentScore}`;
+    //updateScore(username, currentScore);
+    document.getElementById("score").innerText = `Total score: ${currentScore}`;
 
     // Move the dinosaur one place to the right. '++' is before 'dinoPosition' so it increments it before returning it
     document.getElementById("player").style.gridColumn = --userPosition;
 
     // Update the status text to indicate an incorrect answer
-    document.getElementById('status').innerText = 'Incorrect! The dinosaur is getting closer!';
+    document.getElementById("status").innerText =
+      "Incorrect! The dinosaur is getting closer!";
 
     // If the user gets eaten
     if (userPosition === dinoPosition) {
-      document.getElementById('question').innerText = ''
+      document.getElementById("question").innerText = "";
       endGame();
     } else {
       // Restart the timer for a new question if the game is not over
@@ -207,10 +220,81 @@ function checkAnswer(index, correctAnswerIndex) {
   }
 }
 
+//function for when the games finished, and we want to display view results button
+const endGameButton = (result = "lost") => {
+  // Clear the game div completely
+  const game = document.querySelector("#game");
+  game.remove();
+
+  // Create a new game div and style it
+  const newGameDiv = document.createElement("div");
+  newGameDiv.id = "game";
+  newGameDiv.style.textAlign = "center";
+
+  // append new button, plus text and gif corresponding to if user won or lost
+  const body = document.querySelector("body");
+  body.appendChild(newGameDiv);
+
+  const h3Element = document.createElement("h3");
+
+  newGameDiv.appendChild(h3Element);
+
+  const endButton = document.createElement("button");
+  endButton.textContent = "See Results";
+  endButton.addEventListener("click", function () {
+    // updateScore(username, currentScore);
+    window.location.href = "leaderboard.html";
+  });
+
+  const h5Element = document.createElement("h5");
+  h5Element.textContent =
+    "Click through to see your position on the leaderboard.";
+
+  if (result === "won") {
+    h3Element.textContent = "Well done! You managed to escape the dinosaur.";
+    const iframeDiv = document.createElement("div");
+
+    const iframeElement = document.createElement("iframe");
+    iframeElement.src = "https://giphy.com/embed/M0j7tf1ANjqcAwedMM";
+    iframeElement.width = "480";
+    iframeElement.height = "318";
+    iframeElement.frameBorder = "0";
+    iframeElement.className = "giphy-embed";
+    iframeElement.allowFullscreen = true;
+
+    const iframeLink = document.createElement("p");
+    iframeDiv.appendChild(iframeElement);
+    iframeDiv.appendChild(iframeLink);
+
+    newGameDiv.appendChild(iframeDiv);
+  } else {
+    h3Element.textContent = "Bad luck you've been eaten!";
+    //adding the gif for eaten beast
+    const iframeDiv = document.createElement("div");
+
+    const iframeElement = document.createElement("iframe");
+    iframeElement.src = "https://giphy.com/embed/T62sjBzozTC6Y";
+    iframeElement.width = "480";
+    iframeElement.height = "270";
+    iframeElement.frameBorder = "0";
+    iframeElement.className = "giphy-embed";
+    iframeElement.allowFullscreen = true;
+
+    const iframeLink = document.createElement("p");
+
+    iframeDiv.appendChild(iframeElement);
+    iframeDiv.appendChild(iframeLink);
+
+    newGameDiv.appendChild(iframeDiv);
+  }
+  newGameDiv.appendChild(endButton);
+  newGameDiv.appendChild(h5Element);
+};
+
 // Event listener for the "newGameButton" element
-document.getElementById('newGameButton').addEventListener('click', function () {
+document.getElementById("newGameButton").addEventListener("click", function () {
   // Hide new game button
-  document.getElementById('newGameButton').style.display = 'none';
+  document.getElementById("newGameButton").style.display = "none";
 
   // Reset scores and positions
   questionNumber = 1;
@@ -219,13 +303,13 @@ document.getElementById('newGameButton').addEventListener('click', function () {
   userPosition = 4;
 
   // Reset status
-  document.getElementById('status').innerText = 'Pick the right answer!';
+  document.getElementById("status").innerText = "Pick the right answer!";
 
   // Show and reset dino and player position
   document.getElementById("player").style.gridColumn = userPosition;
   document.getElementById("beast").style.gridColumn = dinoPosition;
-  document.getElementById("player").style.display = 'block';
-  document.getElementById("beast").style.display = 'block';
+  document.getElementById("player").style.display = "block";
+  document.getElementById("beast").style.display = "block";
 
   // Run game again
   nextQuestion();

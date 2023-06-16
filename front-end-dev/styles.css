@@ -695,5 +695,9 @@ hr {
     margin-left: 0;
     line-height: 20px;
   }
+  
+    label[for="username"] {
+        display: none;
+    }
 }
   

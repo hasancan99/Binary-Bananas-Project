@@ -15,7 +15,7 @@ let currentScore = 0;
 // ELLIOT
 const getCurrentScore = async (username) => {
   try {
-    const resp = await fetch(`https://the-dino-chase.ew.r.appspot.com/get-score/${username}`);
+    const resp = await fetch(`https://thedinochase.onrender.com/get-score/${username}`);
     if (resp.ok) {
       const data = await resp.json();
       return data; // Return the score
@@ -31,7 +31,7 @@ const getCurrentScore = async (username) => {
 const updateScore = async (username, score) => {
   try {
     const resp = await fetch(
-      `https://the-dino-chase.ew.r.appspot.com/add-totalScore/${username}/${score}`,
+      `https://thedinochase.onrender.com/add-totalScore/${username}/${score}`,
       {
         method: "POST",
       }
@@ -87,7 +87,7 @@ function nextQuestion() {
   }
 
   // Send a GET request to the server to fetch the next question
-  fetch(`https://the-dino-chase.ew.r.appspot.com/next-question?questionNumber=${questionNumber}`)
+  fetch(`https://thedinochase.onrender.com/next-question?questionNumber=${questionNumber}`)
     .then((response) => response.json())
     .then((question) => {
       console.log(question);

@@ -725,3 +725,18 @@ hr {
     }
 }
   
+#countdown {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 16px;
+  color: rgb(43, 38, 38);
+}
+
+#countdown-text {
+  padding: 10px 14px 10px 14px;
+  border-radius: 0.5em;
+  font-size:14px;
+  text-align: center;
+  margin-top: 0px;
+  background-color: rgba(255, 0, 0, 0.176);
+}
